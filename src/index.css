@@ -1,0 +1,165 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 30 20% 98%;
+    --foreground: 0 0% 8%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 8%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 8%;
+
+    --primary: 20 90% 48%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 30 10% 94%;
+    --secondary-foreground: 0 0% 15%;
+
+    --muted: 30 10% 94%;
+    --muted-foreground: 0 0% 40%;
+
+    --accent: 20 90% 48%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 30 10% 88%;
+    --input: 30 10% 88%;
+    --ring: 20 90% 48%;
+
+    --radius: 0.75rem;
+
+    --neon-cyan: 20 90% 48%;
+    --neon-blue: 0 0% 15%;
+    --neon-purple: 20 70% 40%;
+    --glass-bg: 0 0% 100%;
+    --glass-border: 30 10% 88%;
+
+    --gradient-neon: linear-gradient(135deg, hsl(20 90% 48%), hsl(0 0% 15%), hsl(20 70% 40%));
+    --shadow-neon-cyan: 0 4px 20px hsl(20 90% 48% / 0.15);
+    --shadow-neon-purple: 0 4px 20px hsl(20 70% 40% / 0.15);
+    --shadow-glass: 0 4px 24px hsl(0 0% 0% / 0.06);
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 0 0% 15%;
+    --sidebar-primary: 20 90% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 30 10% 94%;
+    --sidebar-accent-foreground: 0 0% 15%;
+    --sidebar-border: 30 10% 88%;
+    --sidebar-ring: 20 90% 48%;
+  }
+
+  .dark {
+    --background: 222 47% 5%;
+    --foreground: 210 40% 92%;
+
+    --card: 222 40% 8%;
+    --card-foreground: 210 40% 92%;
+
+    --popover: 222 40% 8%;
+    --popover-foreground: 210 40% 92%;
+
+    --primary: 190 95% 55%;
+    --primary-foreground: 222 47% 5%;
+
+    --secondary: 250 80% 65%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 222 30% 14%;
+    --muted-foreground: 215 20% 55%;
+
+    --accent: 280 80% 60%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 222 30% 18%;
+    --input: 222 30% 18%;
+    --ring: 190 95% 55%;
+
+    --neon-cyan: 190 95% 55%;
+    --neon-blue: 220 90% 60%;
+    --neon-purple: 280 80% 60%;
+    --glass-bg: 222 40% 8%;
+    --glass-border: 222 30% 20%;
+
+    --gradient-neon: linear-gradient(135deg, hsl(190 95% 55%), hsl(220 90% 60%), hsl(280 80% 60%));
+    --shadow-neon-cyan: 0 0 20px hsl(190 95% 55% / 0.3), 0 0 40px hsl(190 95% 55% / 0.1);
+    --shadow-neon-purple: 0 0 20px hsl(280 80% 60% / 0.3), 0 0 40px hsl(280 80% 60% / 0.1);
+    --shadow-glass: 0 8px 32px hsl(222 47% 2% / 0.5);
+
+    --sidebar-background: 222 40% 8%;
+    --sidebar-foreground: 210 40% 92%;
+    --sidebar-primary: 190 95% 55%;
+    --sidebar-primary-foreground: 222 47% 5%;
+    --sidebar-accent: 222 30% 14%;
+    --sidebar-accent-foreground: 210 40% 92%;
+    --sidebar-border: 222 30% 18%;
+    --sidebar-ring: 190 95% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-card/60 backdrop-blur-xl border border-glass-border rounded-xl;
+    box-shadow: var(--shadow-glass);
+  }
+
+  .dark .glass-card {
+    @apply bg-card/60;
+  }
+
+  .neon-glow {
+    box-shadow: var(--shadow-neon-cyan);
+  }
+
+  .neon-text {
+    text-shadow: 0 0 10px hsl(var(--neon-cyan) / 0.5), 0 0 20px hsl(var(--neon-cyan) / 0.3);
+  }
+
+  :root .neon-text {
+    text-shadow: none;
+  }
+
+  .gradient-text {
+    @apply bg-clip-text text-transparent;
+    background-image: var(--gradient-neon);
+  }
+
+  .section-padding {
+    @apply px-6 md:px-12 lg:px-24 py-20 md:py-32;
+  }
+}
+
+@layer utilities {
+  .scrollbar-hidden {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hidden::-webkit-scrollbar {
+    display: none;
+  }
+}
