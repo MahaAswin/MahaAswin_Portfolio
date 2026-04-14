@@ -11,6 +11,7 @@ const roles = [
 ];
 
 const HeroSection = () => {
+  const resumePath = "/resume/Maha%20Aswin%20S%20B%20-%20resume-Unofficial.pdf";
   const [roleIndex, setRoleIndex] = useState(0);
   const [text, setText] = useState("");
   const [deleting, setDeleting] = useState(false);
@@ -58,18 +59,10 @@ const HeroSection = () => {
         <motion.h1
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.8, type: "spring" }}
+          transition={{ delay: 0.4, duration: 0.8, type: "spring" }}
           className="font-heading text-5xl md:text-7xl lg:text-8xl font-bold mb-4"
         >
-          <span className="text-foreground">Maha Aswin</span>
-        </motion.h1>
-
-        <motion.h1
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5, duration: 0.8, type: "spring" }}
-          className="font-heading text-5xl md:text-7xl lg:text-8xl font-bold mb-4"
-        >
+          <span className="text-foreground">Maha Aswin </span>
           <span className="gradient-text">S B</span>
         </motion.h1>
 
@@ -91,7 +84,7 @@ const HeroSection = () => {
           className="mb-8"
         >
           <a
-            href="/resume.pdf"
+            href={resumePath}
             download
             className="inline-flex items-center rounded-md border border-primary/35 bg-primary/10 px-5 py-2.5 font-mono text-sm text-primary transition hover:bg-primary/20"
           >

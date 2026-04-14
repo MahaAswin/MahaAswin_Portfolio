@@ -1,5 +1,5 @@
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Float, MeshDistortMaterial, Sphere, Torus, Icosahedron, MeshTransmissionMaterial } from "@react-three/drei";
+import { Float, MeshDistortMaterial, Sphere, Icosahedron } from "@react-three/drei";
 import { useRef, useMemo, Suspense } from "react";
 import * as THREE from "three";
 import { useTheme } from "next-themes";
@@ -27,31 +27,6 @@ const GlowingSphere = ({ isDark }: { isDark: boolean }) => {
           opacity={0.7}
         />
       </Sphere>
-    </Float>
-  );
-};
-
-const FloatingTorus = ({ isDark }: { isDark: boolean }) => {
-  const meshRef = useRef<THREE.Mesh>(null);
-
-  useFrame((state) => {
-    if (meshRef.current) {
-      meshRef.current.rotation.x = state.clock.elapsedTime * 0.3;
-      meshRef.current.rotation.z = state.clock.elapsedTime * 0.2;
-    }
-  });
-
-  return (
-    <Float speed={2} rotationIntensity={0.5} floatIntensity={2}>
-      <Torus ref={meshRef} args={[0.8, 0.25, 32, 64]} position={[-3, 1.5, -2]}>
-        <meshStandardMaterial
-          color={isDark ? "#a855f7" : "#1a1a1a"}
-          roughness={0.2}
-          metalness={0.9}
-          emissive={isDark ? "#a855f7" : "#e8601c"}
-          emissiveIntensity={0.3}
-        />
-      </Torus>
     </Float>
   );
 };
@@ -180,7 +155,6 @@ const HeroScene3D = () => {
           <directionalLight position={[0, 5, 5]} intensity={0.5} />
 
           <GlowingSphere isDark={isDark} />
-          <FloatingTorus isDark={isDark} />
           <FloatingIcosahedron isDark={isDark} />
           <OrbitingParticles isDark={isDark} />
           <GlassBox isDark={isDark} />

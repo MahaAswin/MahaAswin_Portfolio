@@ -33,6 +33,25 @@ const categories = [
   },
 ];
 
+const skillLogos: Record<string, string> = {
+  React: "https://cdn.simpleicons.org/react/61DAFB",
+  HTML5: "https://cdn.simpleicons.org/html5/E34F26",
+  CSS3: "https://cdn.simpleicons.org/css3/1572B6",
+  "Tailwind CSS": "https://cdn.simpleicons.org/tailwindcss/06B6D4",
+  "Spring Boot": "https://cdn.simpleicons.org/springboot/6DB33F",
+  "Node.js": "https://cdn.simpleicons.org/nodedotjs/5FA04E",
+  "Express.js": "https://cdn.simpleicons.org/express/FFFFFF",
+  FastAPI: "https://cdn.simpleicons.org/fastapi/009688",
+  Java: "https://cdn.simpleicons.org/openjdk/EA2D2E",
+  "C++": "https://cdn.simpleicons.org/cplusplus/00599C",
+  Python: "https://cdn.simpleicons.org/python/3776AB",
+  JavaScript: "https://cdn.simpleicons.org/javascript/F7DF1E",
+  MongoDB: "https://cdn.simpleicons.org/mongodb/47A248",
+  SQL: "https://cdn.simpleicons.org/mysql/4479A1",
+  Git: "https://cdn.simpleicons.org/git/F05032",
+  Docker: "https://cdn.simpleicons.org/docker/2496ED",
+};
+
 const containerVariants = {
   hidden: {},
   visible: {
@@ -112,8 +131,16 @@ const SkillsSection = () => {
                       viewport={{ once: true }}
                       transition={{ delay: j * 0.05 }}
                       whileHover={{ scale: 1.1, y: -2 }}
-                      className="px-3 py-1.5 rounded-lg text-sm font-mono bg-muted/80 text-foreground border border-border/50 cursor-default transition-colors hover:border-primary/30 hover:bg-primary/5"
+                      className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-mono bg-muted/80 text-foreground border border-border/50 cursor-default transition-colors hover:border-primary/30 hover:bg-primary/5"
                     >
+                      {skillLogos[skill] && (
+                        <img
+                          src={skillLogos[skill]}
+                          alt={`${skill} logo`}
+                          className="h-4 w-4 object-contain"
+                          loading="lazy"
+                        />
+                      )}
                       {skill}
                     </motion.span>
                   ))}

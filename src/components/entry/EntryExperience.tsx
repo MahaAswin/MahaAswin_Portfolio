@@ -107,6 +107,18 @@ export const EntryExperience = ({ onComplete }: EntryExperienceProps) => {
       })),
     []
   );
+  const movingTrails = useMemo(
+    () =>
+      Array.from({ length: 12 }, (_, i) => ({
+        id: i,
+        top: 8 + Math.random() * 80,
+        left: -20 - Math.random() * 40,
+        size: 70 + Math.random() * 160,
+        duration: 8 + Math.random() * 7,
+        delay: Math.random() * 5,
+      })),
+    []
+  );
 
   return (
     <div className="fixed inset-0 z-[100] overflow-hidden bg-[#02050d] select-none">
@@ -170,6 +182,25 @@ export const EntryExperience = ({ onComplete }: EntryExperienceProps) => {
                   height: `${obj.size}px`,
                 }}
                 className="absolute rounded-full border border-cyan-200/10 bg-[radial-gradient(circle_at_30%_30%,rgba(34,211,238,0.35),rgba(30,58,138,0.18)_45%,rgba(2,6,23,0.05)_100%)] blur-[0.5px]"
+              />
+            ))}
+            {movingTrails.map((trail) => (
+              <motion.div
+                key={trail.id}
+                initial={{ x: "-20vw", opacity: 0 }}
+                animate={{ x: "130vw", opacity: [0, 0.75, 0] }}
+                transition={{
+                  duration: trail.duration,
+                  delay: trail.delay,
+                  repeat: Infinity,
+                  ease: "linear",
+                }}
+                style={{
+                  top: `${trail.top}%`,
+                  left: `${trail.left}%`,
+                  width: `${trail.size}px`,
+                }}
+                className="absolute h-[2px] rotate-[12deg] bg-gradient-to-r from-cyan-200/0 via-cyan-200/95 to-cyan-200/0 blur-[1px]"
               />
             ))}
 
