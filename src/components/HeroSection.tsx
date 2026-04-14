@@ -68,10 +68,36 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.8, type: "spring" }}
-          className="font-heading text-5xl md:text-7xl lg:text-8xl font-bold mb-8"
+          className="font-heading text-5xl md:text-7xl lg:text-8xl font-bold mb-4"
         >
           <span className="gradient-text">S B</span>
         </motion.h1>
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.7, duration: 1 }}
+          className="mb-8"
+        >
+          <span className="text-xl md:text-2xl font-heading font-medium text-primary/80 tracking-[0.2em] uppercase animate-pulse-glow shadow-primary/20 drop-shadow-[0_0_10px_rgba(0,242,255,0.5)]">
+            The Developer
+          </span>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.85, duration: 0.6 }}
+          className="mb-8"
+        >
+          <a
+            href="/resume.pdf"
+            download
+            className="inline-flex items-center rounded-md border border-primary/35 bg-primary/10 px-5 py-2.5 font-mono text-sm text-primary transition hover:bg-primary/20"
+          >
+            Download Resume
+          </a>
+        </motion.div>
 
         <motion.div
           initial={{ opacity: 0 }}
