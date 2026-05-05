@@ -1,5 +1,6 @@
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { useRef } from "react";
+import { Download, FileText } from "lucide-react";
 import HeroScene3D from "./HeroScene3D";
 
 const HeroSection = () => {
@@ -32,6 +33,8 @@ const HeroSection = () => {
     x.set(0);
     y.set(0);
   };
+
+  const resumePath = "/resume/Maha Aswin S B - resume-Unofficial.pdf";
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background">
@@ -70,14 +73,29 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.8 }}
-            className="flex flex-col gap-6"
+            className="flex flex-col gap-8"
           >
-            <div className="flex items-center gap-4">
-              <div className="relative w-2.5 h-2.5">
-                <div className="status-dot-ripple" />
-                <div className="absolute inset-0 rounded-full bg-emerald-500 shadow-[0_0_15px_#10b981]" />
+            <div className="flex flex-col gap-6">
+              <div className="flex items-center gap-4">
+                <div className="relative w-2.5 h-2.5">
+                  <div className="status-dot-ripple" />
+                  <div className="absolute inset-0 rounded-full bg-emerald-500 shadow-[0_0_15px_#10b981]" />
+                </div>
+                <span className="text-[10px] font-bold text-foreground/60 uppercase tracking-widest">Available for Projects</span>
               </div>
-              <span className="text-[10px] font-bold text-foreground/60 uppercase tracking-widest">Available for Projects</span>
+
+              {/* DOWNLOAD RESUME BUTTON */}
+              <motion.a
+                href={resumePath}
+                download="Maha_Aswin_Resume.pdf"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="group relative flex items-center gap-4 px-8 py-4 w-fit bg-primary text-black rounded-lg font-black uppercase tracking-[0.2em] text-[10px] shadow-[0_10px_30px_hsla(var(--primary)/0.2)] hover:shadow-[0_20px_40px_hsla(var(--primary)/0.4)] transition-all duration-300 overflow-hidden"
+              >
+                <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-in-out" />
+                <Download size={16} className="relative z-10" />
+                <span className="relative z-10">Download Resume</span>
+              </motion.a>
             </div>
           </motion.div>
         </div>
@@ -97,7 +115,7 @@ const HeroSection = () => {
             {/* The Glass Card Container */}
             <div className="absolute inset-0 rounded-[20px] bg-white/[0.05] dark:bg-black/[0.1] backdrop-blur-[25px] border border-white/[0.08] dark:border-white/[0.05] shadow-[0_40px_100px_rgba(0,0,0,0.5)] overflow-hidden transition-all duration-500 group-hover:bg-white/[0.08] dark:group-hover:bg-black/[0.2] group-hover:border-primary/30 group-hover:shadow-[0_0_60px_rgba(255,193,7,0.15)]">
               
-              {/* Internal Content: Large Hero Avatar */}
+              {/* Internal Content: Avatar */}
               <div className="absolute inset-0 flex flex-col justify-end items-center">
                 {/* Avatar Glow */}
                 <div className="absolute bottom-0 w-[120%] h-[120%] bg-primary/5 blur-[100px] rounded-full pointer-events-none group-hover:bg-primary/20 transition-all duration-700" />

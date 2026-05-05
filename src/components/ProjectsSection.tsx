@@ -1,156 +1,124 @@
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { useState } from "react";
-import { ExternalLink, Github, Bot, Mic, Music, Sparkles, Layout } from "lucide-react";
-
-const projects = [
-  {
-    id: "ai-farmer",
-    icon: Bot,
-    title: "AI Farmer Assistant",
-    short: "Multilingual voice AI helping farmers with actionable insights and agricultural intelligence.",
-    description: "A comprehensive AI-powered assistant that uses speech recognition and text-to-speech for voice interactions. Built with Gemini API for intelligent agricultural advice, supporting diverse farming communities.",
-    stack: [
-      { name: "React", type: "frontend" },
-      { name: "FastAPI", type: "backend" },
-      { name: "Gemini API", type: "ai" },
-      { name: "Python", type: "language" }
-    ],
-    isHero: true,
-    accent: "#00d4ff",
-  },
-  {
-    id: "jarvis",
-    icon: Mic,
-    title: "JARVIS AI Assistant",
-    short: "Iron Man-inspired voice assistant with NLP and real-time speech processing.",
-    description: "Sophisticated voice assistant featuring real-time speech recognition, natural language processing via Gemini, and text-to-speech output. Handles complex multi-turn conversations.",
-    stack: [
-      { name: "Python", type: "language" },
-      { name: "Gemini API", type: "ai" },
-      { name: "Speech Recog", type: "tools" }
-    ],
-    accent: "#8b5cf6",
-  },
-  {
-    id: "music-org",
-    icon: Music,
-    title: "Playlist Organizer",
-    short: "Full-stack music management system with JWT auth and dynamic CRUD.",
-    description: "Secure web application for organizing music playlists. Features JWT-based authentication, full CRUD operations, and a responsive glassmorphism UI.",
-    stack: [
-      { name: "MongoDB", type: "db" },
-      { name: "Node.js", type: "backend" },
-      { name: "React", type: "frontend" }
-    ],
-    accent: "#10b981",
-  },
-];
-
-const tagColors: Record<string, string> = {
-  frontend: "text-cyan-400 bg-cyan-400/10",
-  backend: "text-purple-400 bg-purple-400/10",
-  ai: "text-blue-400 bg-blue-400/10",
-  language: "text-emerald-400 bg-emerald-400/10",
-  db: "text-orange-400 bg-orange-400/10",
-  tools: "text-pink-400 bg-pink-400/10",
-};
-
-const ProjectCard = ({ project }: { project: typeof projects[0] }) => {
-  return (
-    <motion.div
-      layout
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      animate={{ 
-        y: [0, -6, 0],
-      }}
-      transition={{ 
-        y: {
-          duration: 4 + Math.random() * 2,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }
-      }}
-      whileHover={{ y: -12 }}
-      className={`glass-card p-1 group relative overflow-hidden flex flex-col h-full ${
-        project.isHero ? "md:col-span-3" : "md:col-span-1"
-      }`}
-    >
-      {/* Mockup / Preview Area */}
-      <div className="relative aspect-video md:aspect-auto md:h-48 rounded-xl overflow-hidden bg-white/5 mb-4">
-        <div 
-          className="absolute inset-0 opacity-20 transition-opacity group-hover:opacity-40" 
-          style={{ background: `linear-gradient(135deg, ${project.accent}, transparent)` }}
-        />
-        <div className="absolute inset-0 flex items-center justify-center">
-          <project.icon size={project.isHero ? 64 : 48} className="text-white/20 group-hover:text-white/40 transition-all duration-500 group-hover:scale-110" />
-        </div>
-        
-        {/* Action Buttons (Fade in on hover) */}
-        <div className="absolute inset-0 bg-background/60 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-4 z-20">
-          <a href="#" className="p-3 rounded-full bg-primary text-primary-foreground hover:scale-110 transition-transform">
-            <ExternalLink size={20} />
-          </a>
-          <a href="#" className="p-3 rounded-full bg-white/10 text-white hover:scale-110 transition-transform">
-            <Github size={20} />
-          </a>
-        </div>
-      </div>
-
-      <div className="p-6 flex flex-col flex-grow">
-        <div className="flex justify-between items-start mb-4">
-          <h3 className="text-2xl font-bold">{project.title}</h3>
-          <span className="text-[10px] uppercase tracking-widest opacity-40 font-mono">Mission: {project.id}</span>
-        </div>
-        
-        <p className="text-muted-foreground mb-6 text-sm leading-relaxed">
-          {project.isHero ? project.description : project.short}
-        </p>
-
-        <div className="mt-auto flex flex-wrap gap-2">
-          {project.stack.map((tag) => (
-            <span 
-              key={tag.name}
-              className={`px-3 py-1 rounded-full text-[10px] font-mono border border-white/5 ${tagColors[tag.type]}`}
-            >
-              {tag.name}
-            </span>
-          ))}
-        </div>
-      </div>
-
-      {/* Glow Border on Hover */}
-      <div 
-        className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-30 transition-opacity pointer-events-none"
-        style={{ border: `1px solid ${project.accent}`, boxShadow: `0 0 30px ${project.accent}` }}
-      />
-    </motion.div>
-  );
-};
+import { Github, ExternalLink, Play, ArrowRight } from "lucide-react";
+import { projects, Project } from "@/data/projects";
+import ProjectModal from "./ProjectModal";
 
 const ProjectsSection = () => {
-  return (
-    <section id="projects" className="section-padding relative overflow-hidden">
-      <div className="max-w-6xl mx-auto relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-20"
-        >
-          <span className="subtitle-glow text-primary mb-4 block">Manifest</span>
-          <h2 className="font-sans text-4xl md:text-6xl font-bold">
-            Project <span className="gradient-text gradient-underline">Showcase</span>
-          </h2>
-        </motion.div>
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {projects.map((p) => (
-            <ProjectCard key={p.id} project={p} />
+  const handleProjectClick = (project: Project) => {
+    setSelectedProject(project);
+    setIsModalOpen(true);
+  };
+
+  return (
+    <section id="projects" className="section-padding bg-background relative overflow-hidden">
+      {/* Background Decors */}
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
+      
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+          >
+            <span className="subtitle-glow text-primary mb-4 block">Active Deployments</span>
+            <h2 className="text-4xl md:text-6xl font-black tracking-tighter text-foreground uppercase">
+              Project <span className="gradient-text">Matrix</span>
+            </h2>
+          </motion.div>
+          <motion.p 
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="text-muted-foreground max-w-md md:text-right"
+          >
+            Architecting robust digital ecosystems from voice-controlled AI to large-scale enterprise platforms.
+          </motion.p>
+        </div>
+
+        {/* Uniform Project Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {projects.map((project, index) => (
+            <motion.div
+              key={project.id}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
+              onClick={() => handleProjectClick(project)}
+              className="group relative bg-white/[0.03] dark:bg-[#0a0c10]/50 border border-black/5 dark:border-white/5 rounded-2xl overflow-hidden hover:border-primary/30 transition-all duration-500 cursor-pointer flex flex-col h-full shadow-[0_20px_50px_rgba(0,0,0,0.1)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.3)]"
+            >
+              {/* Media Preview */}
+              <div className="aspect-video relative overflow-hidden bg-black/5 dark:bg-white/5">
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                  <div className="flex flex-col items-center gap-2">
+                    <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center scale-75 group-hover:scale-100 transition-transform">
+                      <ArrowRight className="text-black" />
+                    </div>
+                    <span className="text-[10px] font-black uppercase tracking-widest text-white">View Details</span>
+                  </div>
+                </div>
+                
+                {/* Corner Label */}
+                <div className="absolute top-4 left-4 px-3 py-1 bg-black/60 backdrop-blur-md rounded-full border border-white/10">
+                  <span className="text-[8px] font-black tracking-widest text-white/60 uppercase">
+                    DEPLOYMENT_ID: 0{index + 1}
+                  </span>
+                </div>
+              </div>
+
+              {/* Content */}
+              <div className="p-8 flex flex-col flex-1">
+                <div className="mb-4">
+                  <span className="text-[10px] font-mono text-primary uppercase tracking-[0.3em] font-bold">
+                    {project.mission}
+                  </span>
+                  <h3 className="text-2xl font-black tracking-tight text-foreground mt-2 group-hover:text-primary transition-colors">
+                    {project.title}
+                  </h3>
+                </div>
+
+                <p className="text-muted-foreground text-sm line-clamp-3 mb-8">
+                  {project.shortDescription}
+                </p>
+
+                {/* Full Tech Stack Display (Fixed for Light Theme Visibility) */}
+                <div className="mt-auto pt-6 border-t border-black/5 dark:border-white/5">
+                  <div className="flex flex-wrap gap-2">
+                    {project.tags.slice(0, 3).map((tag, i) => (
+                      <span 
+                        key={i}
+                        className="px-2 py-1 bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/10 rounded text-[9px] font-bold text-foreground/40 dark:text-white/40 uppercase tracking-tighter"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                    {project.tags.length > 3 && (
+                      <span className="text-[9px] font-bold text-primary/60">+{project.tags.length - 3}</span>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </motion.div>
           ))}
         </div>
       </div>
+
+      {/* Project Detail Modal */}
+      <ProjectModal
+        project={selectedProject}
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+      />
     </section>
   );
 };

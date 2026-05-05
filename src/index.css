@@ -6,8 +6,8 @@
 
 @layer base {
   :root {
-    /* Sunlit Gold Theme (Light Mode) */
-    --background: 0 0% 100%;
+    /* Refined Sunlit Gold Theme (Light Mode) */
+    --background: 40 30% 98%; /* Soft warm background #F8F6F1 */
     --foreground: 230 25% 10%;
 
     --card: 0 0% 98%;
@@ -22,8 +22,8 @@
     --secondary: 45 100% 40%;
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 230 10% 95%;
-    --muted-foreground: 230 10% 40%;
+    --muted: 230 10% 92%;
+    --muted-foreground: 230 10% 35%; /* Darkened for light theme visibility */
 
     --accent: 45 100% 51%;
     --accent-foreground: 230 25% 10%;
@@ -31,14 +31,14 @@
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 230 10% 90%;
-    --input: 230 10% 90%;
+    --border: 230 10% 85%; /* Slightly darker border for contrast */
+    --input: 230 10% 85%;
     --ring: 45 100% 51%;
 
     --radius: 1rem;
 
     --glass-bg: 0 0% 100% / 0.7;
-    --glass-border: 0 0% 0% / 0.05;
+    --glass-border: 0 0% 0% / 0.08; /* Increased border opacity for light theme */
     
     --neon-cyan: 190 100% 50%;
     --neon-blue: 217 91% 60%;
@@ -57,7 +57,7 @@
     --popover: 230 45% 6%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 65 100% 50%; /* Lime/Yellow highlight like the image */
+    --primary: 65 100% 50%;
     --primary-foreground: 230 50% 3%;
 
     --secondary: 260 80% 60%;
@@ -91,8 +91,13 @@
     background-attachment: fixed;
   }
 
+  :root:not(.dark) body {
+    background-color: hsl(var(--background));
+    background-image: linear-gradient(135deg, #F8F6F1 0%, #FFFFFF 100%);
+  }
+
   h1, h2, h3, h4, h5, h6 {
-    @apply font-sans tracking-tight;
+    @apply font-sans tracking-tight font-black; /* Added font-black for consistent punchy headings */
   }
 
   .font-serif {
@@ -143,9 +148,9 @@
   }
 
   .subtitle-glow {
-    letter-spacing: 0.2em;
-    text-shadow: 0 0 10px hsla(var(--primary) / 0.3);
-    @apply font-mono uppercase text-xs opacity-80;
+    letter-spacing: 0.25em;
+    text-shadow: 0 0 10px hsla(var(--primary) / 0.4); /* Increased shadow for light theme */
+    @apply font-mono uppercase text-[10px] font-bold opacity-90; /* Increased opacity */
   }
 }
 
@@ -162,14 +167,5 @@
   @keyframes rotate {
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
-  }
-
-  .animate-pulse-breathing {
-    animation: breathing 3s ease-in-out infinite;
-  }
-
-  @keyframes breathing {
-    0%, 100% { transform: scale(1); opacity: 1; }
-    50% { transform: scale(1.05); opacity: 0.8; }
   }
 }
