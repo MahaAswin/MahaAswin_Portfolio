@@ -1,190 +1,156 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
-import { ExternalLink, Github, X, Mic, Bot, Music, Sparkles } from "lucide-react";
+import { ExternalLink, Github, Bot, Mic, Music, Sparkles, Layout } from "lucide-react";
 
 const projects = [
   {
+    id: "ai-farmer",
     icon: Bot,
     title: "AI Farmer Assistant",
-    short: "Voice-enabled AI chatbot helping farmers with multilingual support and actionable insights.",
-    description:
-      "A comprehensive AI-powered assistant for farmers that uses speech recognition and text-to-speech for voice interactions. Supports multiple languages to serve diverse farming communities. Built with Gemini API for intelligent agricultural advice.",
-    stack: ["React", "FastAPI", "Gemini API", "Speech API", "Python"],
-    gradient: "from-primary/10 to-transparent",
-    borderHover: "hover:border-primary/50",
+    short: "Multilingual voice AI helping farmers with actionable insights and agricultural intelligence.",
+    description: "A comprehensive AI-powered assistant that uses speech recognition and text-to-speech for voice interactions. Built with Gemini API for intelligent agricultural advice, supporting diverse farming communities.",
+    stack: [
+      { name: "React", type: "frontend" },
+      { name: "FastAPI", type: "backend" },
+      { name: "Gemini API", type: "ai" },
+      { name: "Python", type: "language" }
+    ],
+    isHero: true,
+    accent: "#00d4ff",
   },
   {
+    id: "jarvis",
     icon: Mic,
-    title: "JARVIS AI Voice Assistant",
-    short: "Speech-to-text, text-to-speech AI assistant powered by Gemini API.",
-    description:
-      "A sophisticated voice assistant inspired by JARVIS from Iron Man. Features real-time speech recognition, natural language processing via Gemini API, and text-to-speech output. Handles complex queries and multi-turn conversations.",
-    stack: ["Python", "Gemini API", "Speech Recognition", "pyttsx3"],
-    gradient: "from-neon-blue/10 to-transparent",
-    borderHover: "hover:border-neon-blue/50",
+    title: "JARVIS AI Assistant",
+    short: "Iron Man-inspired voice assistant with NLP and real-time speech processing.",
+    description: "Sophisticated voice assistant featuring real-time speech recognition, natural language processing via Gemini, and text-to-speech output. Handles complex multi-turn conversations.",
+    stack: [
+      { name: "Python", type: "language" },
+      { name: "Gemini API", type: "ai" },
+      { name: "Speech Recog", type: "tools" }
+    ],
+    accent: "#8b5cf6",
   },
   {
+    id: "music-org",
     icon: Music,
-    title: "Music Playlist Organizer",
-    short: "Full-stack playlist manager with authentication and CRUD operations.",
-    description:
-      "A full-stack web application for organizing music playlists. Features JWT-based authentication, full CRUD operations, and a clean responsive UI. Users can create, edit, and manage their playlists seamlessly.",
-    stack: ["MongoDB", "Express", "React", "Node.js", "JWT"],
-    gradient: "from-accent/10 to-transparent",
-    borderHover: "hover:border-accent/50",
+    title: "Playlist Organizer",
+    short: "Full-stack music management system with JWT auth and dynamic CRUD.",
+    description: "Secure web application for organizing music playlists. Features JWT-based authentication, full CRUD operations, and a responsive glassmorphism UI.",
+    stack: [
+      { name: "MongoDB", type: "db" },
+      { name: "Node.js", type: "backend" },
+      { name: "React", type: "frontend" }
+    ],
+    accent: "#10b981",
   },
 ];
 
-const containerVariants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.15 } },
+const tagColors: Record<string, string> = {
+  frontend: "text-cyan-400 bg-cyan-400/10",
+  backend: "text-purple-400 bg-purple-400/10",
+  ai: "text-blue-400 bg-blue-400/10",
+  language: "text-emerald-400 bg-emerald-400/10",
+  db: "text-orange-400 bg-orange-400/10",
+  tools: "text-pink-400 bg-pink-400/10",
 };
 
-const cardVariants = {
-  hidden: { opacity: 0, y: 50, scale: 0.95 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: { duration: 0.6, type: "spring" as const },
-  },
+const ProjectCard = ({ project }: { project: typeof projects[0] }) => {
+  return (
+    <motion.div
+      layout
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      animate={{ 
+        y: [0, -6, 0],
+      }}
+      transition={{ 
+        y: {
+          duration: 4 + Math.random() * 2,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }
+      }}
+      whileHover={{ y: -12 }}
+      className={`glass-card p-1 group relative overflow-hidden flex flex-col h-full ${
+        project.isHero ? "md:col-span-3" : "md:col-span-1"
+      }`}
+    >
+      {/* Mockup / Preview Area */}
+      <div className="relative aspect-video md:aspect-auto md:h-48 rounded-xl overflow-hidden bg-white/5 mb-4">
+        <div 
+          className="absolute inset-0 opacity-20 transition-opacity group-hover:opacity-40" 
+          style={{ background: `linear-gradient(135deg, ${project.accent}, transparent)` }}
+        />
+        <div className="absolute inset-0 flex items-center justify-center">
+          <project.icon size={project.isHero ? 64 : 48} className="text-white/20 group-hover:text-white/40 transition-all duration-500 group-hover:scale-110" />
+        </div>
+        
+        {/* Action Buttons (Fade in on hover) */}
+        <div className="absolute inset-0 bg-background/60 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-4 z-20">
+          <a href="#" className="p-3 rounded-full bg-primary text-primary-foreground hover:scale-110 transition-transform">
+            <ExternalLink size={20} />
+          </a>
+          <a href="#" className="p-3 rounded-full bg-white/10 text-white hover:scale-110 transition-transform">
+            <Github size={20} />
+          </a>
+        </div>
+      </div>
+
+      <div className="p-6 flex flex-col flex-grow">
+        <div className="flex justify-between items-start mb-4">
+          <h3 className="text-2xl font-bold">{project.title}</h3>
+          <span className="text-[10px] uppercase tracking-widest opacity-40 font-mono">Mission: {project.id}</span>
+        </div>
+        
+        <p className="text-muted-foreground mb-6 text-sm leading-relaxed">
+          {project.isHero ? project.description : project.short}
+        </p>
+
+        <div className="mt-auto flex flex-wrap gap-2">
+          {project.stack.map((tag) => (
+            <span 
+              key={tag.name}
+              className={`px-3 py-1 rounded-full text-[10px] font-mono border border-white/5 ${tagColors[tag.type]}`}
+            >
+              {tag.name}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      {/* Glow Border on Hover */}
+      <div 
+        className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-30 transition-opacity pointer-events-none"
+        style={{ border: `1px solid ${project.accent}`, boxShadow: `0 0 30px ${project.accent}` }}
+      />
+    </motion.div>
+  );
 };
 
 const ProjectsSection = () => {
-  const [selected, setSelected] = useState<number | null>(null);
-
   return (
     <section id="projects" className="section-padding relative overflow-hidden">
-      <div className="absolute top-0 left-1/2 w-[600px] h-[600px] -translate-x-1/2 rounded-full bg-primary/3 blur-[150px] pointer-events-none" />
-
       <div className="max-w-6xl mx-auto relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          className="text-center mb-16"
+          viewport={{ once: true }}
+          className="text-center mb-20"
         >
-          <motion.div
-            initial={{ scale: 0 }}
-            whileInView={{ scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ type: "spring", delay: 0.2 }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-card text-primary font-mono text-xs tracking-widest uppercase border-primary/20 mb-6"
-          >
-            <Sparkles size={12} /> Featured Work
-          </motion.div>
-          <h2 className="font-heading text-4xl md:text-6xl font-bold">
-            Project <span className="gradient-text">Showcase</span>
+          <span className="subtitle-glow text-primary mb-4 block">Manifest</span>
+          <h2 className="font-sans text-4xl md:text-6xl font-bold">
+            Project <span className="gradient-text gradient-underline">Showcase</span>
           </h2>
         </motion.div>
 
-        <motion.div
-          className="grid md:grid-cols-3 gap-6"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-        >
-          {projects.map((p, i) => (
-            <motion.div
-              key={p.title}
-              variants={cardVariants}
-              whileHover={{ scale: 1.04, y: -8 }}
-              onClick={() => setSelected(i)}
-              className={`glass-card p-6 border border-border ${p.borderHover} transition-all duration-300 cursor-pointer group relative overflow-hidden`}
-            >
-              <div className={`absolute inset-0 bg-gradient-to-br ${p.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
-
-              {/* Corner accent */}
-              <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-bl from-primary/10 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity" />
-
-              <div className="relative z-10">
-                <motion.div
-                  whileHover={{ rotate: 15 }}
-                  className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-5 group-hover:bg-primary/20 transition-colors"
-                >
-                  <p.icon className="w-6 h-6 text-primary" />
-                </motion.div>
-                <h3 className="font-heading text-lg font-semibold mb-2 text-foreground">{p.title}</h3>
-                <p className="text-muted-foreground text-sm mb-5 leading-relaxed">{p.short}</p>
-                <div className="flex flex-wrap gap-1.5">
-                  {p.stack.slice(0, 3).map((t) => (
-                    <span key={t} className="text-xs font-mono px-2 py-1 rounded bg-muted text-muted-foreground">
-                      {t}
-                    </span>
-                  ))}
-                  {p.stack.length > 3 && (
-                    <span className="text-xs font-mono px-2 py-1 rounded bg-muted text-muted-foreground">
-                      +{p.stack.length - 3}
-                    </span>
-                  )}
-                </div>
-              </div>
-            </motion.div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {projects.map((p) => (
+            <ProjectCard key={p.id} project={p} />
           ))}
-        </motion.div>
+        </div>
       </div>
-
-      {/* Modal */}
-      <AnimatePresence>
-        {selected !== null && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center px-6 bg-background/80 backdrop-blur-md"
-            onClick={() => setSelected(null)}
-          >
-            <motion.div
-              initial={{ scale: 0.85, opacity: 0, y: 20 }}
-              animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.85, opacity: 0, y: 20 }}
-              transition={{ type: "spring", damping: 25 }}
-              onClick={(e) => e.stopPropagation()}
-              className="glass-card border border-glass-border p-8 max-w-lg w-full relative overflow-hidden"
-            >
-              <div className={`absolute inset-0 bg-gradient-to-br ${projects[selected].gradient} opacity-50`} />
-
-              <button
-                onClick={() => setSelected(null)}
-                className="absolute top-4 right-4 text-muted-foreground hover:text-foreground z-20 w-8 h-8 rounded-full bg-muted flex items-center justify-center"
-              >
-                <X size={16} />
-              </button>
-
-              <div className="relative z-10">
-                {(() => {
-                  const p = projects[selected];
-                  return (
-                    <>
-                      <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-5">
-                        <p.icon className="w-7 h-7 text-primary" />
-                      </div>
-                      <h3 className="font-heading text-2xl font-bold mb-3">{p.title}</h3>
-                      <p className="text-muted-foreground text-sm leading-relaxed mb-6">{p.description}</p>
-                      <div className="flex flex-wrap gap-2 mb-6">
-                        {p.stack.map((t) => (
-                          <span key={t} className="text-xs font-mono px-3 py-1.5 rounded-lg bg-muted text-muted-foreground border border-border">
-                            {t}
-                          </span>
-                        ))}
-                      </div>
-                      <div className="flex gap-3">
-                        <a href="#" className="flex items-center gap-2 px-5 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-medium hover:opacity-90 transition-opacity">
-                          <Github size={16} /> GitHub
-                        </a>
-                        <a href="#" className="flex items-center gap-2 px-5 py-2.5 rounded-lg border border-primary text-primary text-sm font-medium hover:bg-primary/10 transition-colors">
-                          <ExternalLink size={16} /> Live Demo
-                        </a>
-                      </div>
-                    </>
-                  );
-                })()}
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </section>
   );
 };

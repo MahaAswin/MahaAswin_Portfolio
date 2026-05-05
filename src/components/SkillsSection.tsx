@@ -1,154 +1,135 @@
 import { motion } from "framer-motion";
-import { Layers } from "lucide-react";
+import { Layers, Circle } from "lucide-react";
 import SkillsScene3D from "./SkillsScene3D";
 
 const categories = [
   {
     title: "Frontend",
-    gradient: "from-primary/10 to-primary/5",
-    borderColor: "hover:border-primary/40",
-    iconBg: "bg-primary/10",
-    skills: ["React", "HTML5", "CSS3", "Tailwind CSS"],
+    accent: "#00d4ff",
+    skills: [
+      { name: "React", level: 5 },
+      { name: "HTML5", level: 5 },
+      { name: "CSS3", level: 4 },
+      { name: "Tailwind CSS", level: 5 }
+    ],
   },
   {
     title: "Backend",
-    gradient: "from-neon-blue/10 to-neon-blue/5",
-    borderColor: "hover:border-neon-blue/40",
-    iconBg: "bg-neon-blue/10",
-    skills: ["Spring Boot", "Node.js", "Express.js", "FastAPI"],
+    accent: "#8b5cf6",
+    skills: [
+      { name: "Spring Boot", level: 5 },
+      { name: "Node.js", level: 4 },
+      { name: "Express.js", level: 4 },
+      { name: "FastAPI", level: 5 }
+    ],
   },
   {
     title: "Languages",
-    gradient: "from-accent/10 to-accent/5",
-    borderColor: "hover:border-accent/40",
-    iconBg: "bg-accent/10",
-    skills: ["Java", "C++", "Python", "JavaScript"],
+    accent: "#10b981",
+    skills: [
+      { name: "Java", level: 5 },
+      { name: "C++", level: 4 },
+      { name: "Python", level: 5 },
+      { name: "JavaScript", level: 5 }
+    ],
   },
   {
     title: "Database & Tools",
-    gradient: "from-secondary/10 to-secondary/5",
-    borderColor: "hover:border-secondary/40",
-    iconBg: "bg-secondary/10",
-    skills: ["MongoDB", "SQL", "Git", "Docker"],
+    accent: "#f59e0b",
+    skills: [
+      { name: "MongoDB", level: 4 },
+      { name: "SQL", level: 4 },
+      { name: "Git", level: 5 },
+      { name: "Docker", level: 3 }
+    ],
   },
 ];
 
-const skillLogos: Record<string, string> = {
-  React: "https://cdn.simpleicons.org/react/61DAFB",
-  HTML5: "https://cdn.simpleicons.org/html5/E34F26",
-  CSS3: "https://cdn.simpleicons.org/css3/1572B6",
-  "Tailwind CSS": "https://cdn.simpleicons.org/tailwindcss/06B6D4",
-  "Spring Boot": "https://cdn.simpleicons.org/springboot/6DB33F",
-  "Node.js": "https://cdn.simpleicons.org/nodedotjs/5FA04E",
-  "Express.js": "https://cdn.simpleicons.org/express/FFFFFF",
-  FastAPI: "https://cdn.simpleicons.org/fastapi/009688",
-  Java: "https://cdn.simpleicons.org/openjdk/EA2D2E",
-  "C++": "https://cdn.simpleicons.org/cplusplus/00599C",
-  Python: "https://cdn.simpleicons.org/python/3776AB",
-  JavaScript: "https://cdn.simpleicons.org/javascript/F7DF1E",
-  MongoDB: "https://cdn.simpleicons.org/mongodb/47A248",
-  SQL: "https://cdn.simpleicons.org/mysql/4479A1",
-  Git: "https://cdn.simpleicons.org/git/F05032",
-  Docker: "https://cdn.simpleicons.org/docker/2496ED",
-};
-
-const containerVariants = {
-  hidden: {},
-  visible: {
-    transition: { staggerChildren: 0.12 },
-  },
-};
-
-const cardVariants = {
-  hidden: { opacity: 0, y: 40, rotateX: 10 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    rotateX: 0,
-    transition: { duration: 0.6, type: "spring" as const },
-  },
-};
-
 const SkillsSection = () => {
   return (
-    <section id="skills" className="section-padding relative overflow-hidden">
-      {/* 3D Background */}
+    <section id="skills" className="section-padding relative overflow-hidden perspective-1000">
       <SkillsScene3D />
-
-      <div className="absolute top-1/2 left-0 w-[500px] h-[500px] rounded-full bg-accent/3 blur-[150px] pointer-events-none" />
-      <div className="absolute bottom-0 right-0 w-[400px] h-[400px] rounded-full bg-primary/3 blur-[120px] pointer-events-none" />
 
       <div className="max-w-6xl mx-auto relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          className="text-center mb-16"
+          viewport={{ once: true }}
+          className="text-center mb-20"
         >
-          <motion.div
-            initial={{ scale: 0 }}
-            whileInView={{ scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ type: "spring", delay: 0.2 }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-card text-primary font-mono text-xs tracking-widest uppercase border-primary/20 mb-6"
-          >
-            <Layers size={12} /> Tech Stack
-          </motion.div>
-          <h2 className="font-heading text-4xl md:text-6xl font-bold">
-            Tech <span className="gradient-text">Arsenal</span>
+          <span className="subtitle-glow text-primary mb-4 block">Capabilities</span>
+          <h2 className="font-sans text-4xl md:text-6xl font-bold">
+            Tech <span className="gradient-text gradient-underline">Arsenal</span>
           </h2>
         </motion.div>
 
-        <motion.div
-          className="grid md:grid-cols-2 gap-6"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-        >
-          {categories.map((cat) => (
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {categories.map((cat, i) => (
             <motion.div
               key={cat.title}
-              variants={cardVariants}
-              whileHover={{ scale: 1.03, y: -6 }}
-              className={`glass-card p-6 border border-border ${cat.borderColor} transition-all duration-300 group relative overflow-hidden`}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1 }}
+              whileHover={{ 
+                rotateY: i % 2 === 0 ? 5 : -5,
+                rotateX: 5,
+                y: -10 
+              }}
+              style={{ borderColor: cat.accent }}
+              className="glass-card p-6 border-t-2 group transition-all duration-500"
             >
-              <div className={`absolute inset-0 bg-gradient-to-br ${cat.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
+              <h3 className="text-xl font-bold mb-6 flex items-center gap-2" style={{ color: cat.accent }}>
+                <Layers size={18} />
+                {cat.title}
+              </h3>
 
-              <div className="relative z-10">
-                <h3 className="font-heading text-lg font-semibold mb-5 text-foreground flex items-center gap-3">
-                  <div className={`w-8 h-8 rounded-lg ${cat.iconBg} flex items-center justify-center`}>
-                    <span className="text-xs font-mono text-primary">{`{}`}</span>
-                  </div>
-                  {cat.title}
-                </h3>
-                <div className="flex flex-wrap gap-2">
-                  {cat.skills.map((skill, j) => (
-                    <motion.span
-                      key={skill}
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: j * 0.05 }}
-                      whileHover={{ scale: 1.1, y: -2 }}
-                      className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-mono bg-muted/80 text-foreground border border-border/50 cursor-default transition-colors hover:border-primary/30 hover:bg-primary/5"
-                    >
-                      {skillLogos[skill] && (
-                        <img
-                          src={skillLogos[skill]}
-                          alt={`${skill} logo`}
-                          className="h-4 w-4 object-contain"
-                          loading="lazy"
+              <div className="space-y-4">
+                {cat.skills.map((skill, j) => (
+                  <motion.div
+                    key={skill.name}
+                    animate={{ 
+                      y: [0, -4, 0],
+                    }}
+                    transition={{ 
+                      duration: 2 + Math.random() * 2,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                      delay: Math.random() * 2
+                    }}
+                    className="flex flex-col gap-1"
+                  >
+                    <div className="flex justify-between items-center">
+                      <span className="text-sm font-mono text-foreground/80">{skill.name}</span>
+                    </div>
+                    <div className="flex gap-1">
+                      {[1, 2, 3, 4, 5].map((dot) => (
+                        <div 
+                          key={dot}
+                          className={`w-1.5 h-1.5 rounded-full transition-all duration-500 ${
+                            dot <= skill.level 
+                              ? "bg-current opacity-100 scale-110" 
+                              : "bg-white/10 opacity-30"
+                          }`}
+                          style={{ color: cat.accent }}
                         />
-                      )}
-                      {skill}
-                    </motion.span>
-                  ))}
-                </div>
+                      ))}
+                    </div>
+                  </motion.div>
+                ))}
               </div>
+              
+              {/* Subtle Glow Border on Hover */}
+              <div 
+                className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity pointer-events-none"
+                style={{ 
+                  boxShadow: `0 0 40px ${cat.accent}`,
+                  border: `1px solid ${cat.accent}` 
+                }}
+              />
             </motion.div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

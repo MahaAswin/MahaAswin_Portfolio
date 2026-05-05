@@ -1,120 +1,129 @@
-import { motion } from "framer-motion";
-import { Code, Server, Brain, Rocket } from "lucide-react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
+import { Rocket, Satellite, Radio, Sparkles, Award } from "lucide-react";
 
 const milestones = [
   {
-    icon: Code,
+    icon: Rocket,
     year: "2021",
-    title: "The Foundation",
-    description: "Started the coding journey with C/C++ and Data Structures & Algorithms. Built a strong problem-solving mindset.",
-    color: "text-primary",
-    gradient: "from-primary/20 to-transparent",
+    title: "Launch Phase",
+    description: "Started the mission with C/C++ and Data Structures. Initialized core systems and logic protocols.",
+    color: "text-cyan-400",
   },
   {
-    icon: Server,
+    icon: Satellite,
     year: "2022–2023",
-    title: "Full Stack Mastery",
-    description: "Dove deep into MERN stack and Spring Boot. Built production-ready applications with authentication, APIs, and database design.",
-    color: "text-neon-blue",
-    gradient: "from-neon-blue/20 to-transparent",
+    title: "Orbital Mastery",
+    description: "Deployed full-stack satellites using MERN and Spring Boot. Establishing robust communication arrays.",
+    color: "text-purple-400",
   },
   {
-    icon: Brain,
+    icon: Radio,
     year: "2024–Present",
-    title: "AI & Innovation",
-    description: "Created AI-powered systems including JARVIS voice assistant and an AI Farmer Assistant. Pushing boundaries with Gemini API and voice tech.",
-    color: "text-accent",
-    gradient: "from-accent/20 to-transparent",
+    title: "Deep Space Station",
+    description: "Commanding AI-powered research hubs. Integrating Gemini API and voice navigation systems.",
+    color: "text-blue-400",
   },
 ];
 
 const JourneySection = () => {
+  const containerRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"],
+  });
+
+  const pathLength = useTransform(scrollYProgress, [0.1, 0.8], [0, 1]);
+
   return (
-    <section id="journey" className="section-padding relative overflow-hidden">
-      {/* Decorative elements */}
-      <div className="absolute top-20 right-0 w-[400px] h-[400px] rounded-full bg-primary/3 blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-20 left-0 w-[300px] h-[300px] rounded-full bg-accent/3 blur-[100px] pointer-events-none" />
+    <section id="journey" ref={containerRef} className="section-padding relative overflow-hidden bg-background">
+      {/* Decorative Ghost Background Text */}
+      <div className="absolute top-1/2 left-0 -translate-y-1/2 text-[15vw] font-black text-foreground/5 pointer-events-none select-none z-0">
+        JOURNEY
+      </div>
 
-      <div className="max-w-5xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          className="text-center mb-20"
-        >
+      <div className="max-w-6xl mx-auto relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-20">
           <motion.div
-            initial={{ scale: 0 }}
-            whileInView={{ scale: 1 }}
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ type: "spring", delay: 0.2 }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-card text-primary font-mono text-xs tracking-widest uppercase border-primary/20 mb-6"
+            className="lg:col-span-7"
           >
-            <Rocket size={12} /> My Path
+            <span className="subtitle-glow text-primary mb-4 block">Professional Evolution</span>
+            <h2 className="font-sans text-4xl md:text-6xl font-black tracking-tighter mb-6">
+              THE <span className="gradient-text">TRAJECTORY</span>
+            </h2>
+            <p className="text-muted-foreground text-lg leading-relaxed max-w-2xl">
+              From coding fundamental logic to architecting complex AI ecosystems, my journey has been a continuous climb toward engineering excellence.
+            </p>
           </motion.div>
-          <h2 className="font-heading text-4xl md:text-6xl font-bold">
-            The <span className="gradient-text">Journey</span>
-          </h2>
-        </motion.div>
 
-        <div className="relative">
-          {/* Timeline line with glow */}
-          <div className="absolute left-6 md:left-1/2 top-0 bottom-0 w-px">
-            <div className="absolute inset-0 bg-gradient-to-b from-primary via-neon-blue to-accent opacity-40" />
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="lg:col-span-5 relative"
+          >
+            <div className="relative group">
+              <div className="absolute inset-0 bg-primary/20 blur-3xl rounded-full scale-75 group-hover:scale-90 transition-transform duration-700" />
+              <img 
+                src="/uploads/profile-white-shirt.png" 
+                alt="Professional focus" 
+                className="relative z-10 w-full h-auto object-contain drop-shadow-2xl grayscale hover:grayscale-0 transition-all duration-700"
+              />
+            </div>
+          </motion.div>
+        </div>
+
+        <div className="relative mt-20">
+          {/* Timeline Line */}
+          <div className="absolute left-6 md:left-1/2 top-0 bottom-0 w-[2px] -translate-x-1/2 overflow-hidden hidden md:block">
+            <div className="w-full h-full bg-foreground/5" />
             <motion.div
-              className="absolute top-0 left-0 w-full bg-gradient-to-b from-primary to-transparent"
-              initial={{ height: 0 }}
-              whileInView={{ height: "100%" }}
-              viewport={{ once: true }}
-              transition={{ duration: 2, ease: "easeOut" }}
+              className="absolute top-0 left-0 w-full bg-gradient-to-b from-primary via-accent to-secondary origin-top"
+              style={{ scaleY: pathLength }}
             />
           </div>
 
-          {milestones.map((m, i) => (
-            <motion.div
-              key={m.year}
-              initial={{ opacity: 0, x: i % 2 === 0 ? -60 : 60, y: 20 }}
-              whileInView={{ opacity: 1, x: 0, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.7, delay: i * 0.2, type: "spring" }}
-              className={`relative flex items-start mb-20 last:mb-0 ${
-                i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
-              } flex-row`}
-            >
-              {/* Animated dot */}
+          <div className="space-y-16">
+            {milestones.map((m, i) => (
               <motion.div
-                initial={{ scale: 0 }}
-                whileInView={{ scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.2 + 0.3, type: "spring" }}
-                className="absolute left-6 md:left-1/2 -translate-x-1/2 z-10"
+                key={m.year}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.8, delay: i * 0.1 }}
+                className={`relative flex items-center ${
+                  i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
+                } flex-col md:flex-row`}
               >
-                <div className="w-4 h-4 rounded-full bg-primary neon-glow" />
-                <div className="absolute inset-0 w-4 h-4 rounded-full bg-primary animate-ping opacity-20" />
-              </motion.div>
-
-              <div className={`ml-14 md:ml-0 md:w-1/2 ${i % 2 === 0 ? "md:pr-16" : "md:pl-16"}`}>
-                <motion.div
-                  whileHover={{ scale: 1.02, y: -4 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                  className={`glass-card p-6 hover:border-primary/30 transition-all group relative overflow-hidden`}
-                >
-                  {/* Gradient overlay */}
-                  <div className={`absolute inset-0 bg-gradient-to-br ${m.gradient} opacity-0 group-hover:opacity-100 transition-opacity`} />
-
-                  <div className="relative z-10">
-                    <div className="flex items-center gap-3 mb-3">
-                      <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                        <m.icon className={`${m.color} w-4 h-4`} />
-                      </div>
-                      <span className="font-mono text-xs text-muted-foreground px-2 py-0.5 rounded bg-muted">{m.year}</span>
-                    </div>
-                    <h3 className="font-heading text-xl font-semibold mb-2 text-foreground">{m.title}</h3>
-                    <p className="text-muted-foreground text-sm leading-relaxed">{m.description}</p>
+                {/* Node */}
+                <div className="absolute left-6 md:left-1/2 -translate-x-1/2 z-10 hidden md:flex">
+                  <div className="w-12 h-12 rounded-full glass-card flex items-center justify-center border-primary/20 bg-background/80 shadow-[0_0_15px_rgba(var(--primary),0.2)]">
+                    <m.icon className="text-primary w-6 h-6" />
                   </div>
-                </motion.div>
-              </div>
-            </motion.div>
-          ))}
+                </div>
+
+                <div className={`w-full md:w-1/2 ${i % 2 === 0 ? "md:pr-24" : "md:pl-24"}`}>
+                  <div className="glass-card p-8 group hover:border-primary/30 transition-all duration-500">
+                    <div className="flex items-center justify-between mb-4">
+                      <span className="font-mono text-xs font-bold text-primary tracking-widest px-3 py-1 bg-primary/10 rounded-full">
+                        {m.year}
+                      </span>
+                      <m.icon className="md:hidden text-primary w-5 h-5" />
+                    </div>
+                    <h3 className="text-2xl font-black tracking-tight mb-4 group-hover:text-primary transition-colors">
+                      {m.title}
+                    </h3>
+                    <p className="text-muted-foreground leading-relaxed">
+                      {m.description}
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
