@@ -37,8 +37,8 @@
 
     --radius: 1rem;
 
-    --glass-bg: 0 0% 100% / 0.7;
-    --glass-border: 0 0% 0% / 0.08; /* Increased border opacity for light theme */
+    --glass-bg: 0 0% 100% / 0.8;
+    --glass-border: 0 0% 0% / 0.18; /* Increased border opacity for light theme */
     
     --neon-cyan: 190 100% 50%;
     --neon-blue: 217 91% 60%;
@@ -73,8 +73,8 @@
     --input: 230 30% 18%;
     --ring: 65 100% 50%;
 
-    --glass-bg: 230 50% 3% / 0.5;
-    --glass-border: 0 0% 100% / 0.08;
+    --glass-bg: 230 50% 3% / 0.6;
+    --glass-border: 0 0% 100% / 0.18;
   }
 }
 
@@ -111,12 +111,18 @@
 
 @layer components {
   .glass-card {
-    background: hsl(var(--glass-bg));
+    background: hsla(var(--background) / 0.8);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    border: 1px solid hsl(var(--glass-border));
-    @apply rounded-2xl;
+    border: 1px solid hsla(var(--primary) / 0.2);
+    @apply rounded-2xl shadow-2xl;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .glass-card-accented {
+    @apply glass-card;
+    background: hsla(var(--primary) / 0.03);
+    border-color: hsla(var(--primary) / 0.2);
   }
 
   .text-outline {

@@ -35,7 +35,7 @@ const ContactSection = () => {
               href="https://linkedin.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="glass-card px-8 py-4 flex items-center gap-3 font-medium transition-all hover:border-[#0077b5]/50 group"
+              className="glass-card px-8 py-4 flex items-center gap-3 font-medium transition-all border-[#0077b5]/20 bg-[#0077b5]/5 hover:border-[#0077b5]/50 group"
               style={{ "--glow-color": "#0077b5" } as React.CSSProperties}
             >
               <Linkedin className="text-[#0077b5] group-hover:drop-shadow-[0_0_8px_#0077b5]" />
@@ -47,7 +47,7 @@ const ContactSection = () => {
               whileHover={{ scale: 1.05, y: -5 }}
               whileTap={{ scale: 0.95 }}
               href="mailto:mahaaswin@example.com"
-              className="glass-card px-8 py-4 flex items-center gap-3 font-medium transition-all hover:border-[#8b5cf6]/50 group"
+              className="glass-card px-8 py-4 flex items-center gap-3 font-medium transition-all border-[#8b5cf6]/20 bg-[#8b5cf6]/5 hover:border-[#8b5cf6]/50 group"
             >
               <Mail className="text-[#8b5cf6] group-hover:drop-shadow-[0_0_8px_#8b5cf6]" />
               Email Me
@@ -60,7 +60,7 @@ const ContactSection = () => {
               href="https://github.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="glass-card px-8 py-4 flex items-center gap-3 font-medium transition-all hover:border-white/50 group"
+              className="glass-card px-8 py-4 flex items-center gap-3 font-medium transition-all border-black/10 dark:border-white/20 bg-black/5 dark:bg-white/5 hover:border-black/50 dark:hover:border-white/50 group"
             >
               <Github className="text-white group-hover:drop-shadow-[0_0_8px_white]" />
               GitHub

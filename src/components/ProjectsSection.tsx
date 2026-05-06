@@ -50,7 +50,7 @@ const ProjectsSection = () => {
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
               onClick={() => handleProjectClick(project)}
-              className="group relative bg-white/[0.03] dark:bg-[#0a0c10]/50 border border-black/5 dark:border-white/5 rounded-2xl overflow-hidden hover:border-primary/30 transition-all duration-500 cursor-pointer flex flex-col h-full shadow-[0_20px_50px_rgba(0,0,0,0.1)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.3)]"
+              className="group relative bg-primary/[0.04] dark:bg-primary/[0.06] border-2 border-primary/10 dark:border-primary/20 rounded-2xl overflow-hidden hover:border-primary/60 transition-all duration-500 cursor-pointer flex flex-col h-full shadow-[0_20px_50px_rgba(0,0,0,0.08)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.25)]"
             >
               {/* Media Preview */}
               <div className="aspect-video relative overflow-hidden bg-black/5 dark:bg-white/5">

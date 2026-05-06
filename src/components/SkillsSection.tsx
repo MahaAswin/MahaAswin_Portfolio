@@ -29,7 +29,7 @@ const SkillsSection = () => {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ delay: groupIdx * 0.1, duration: 0.8 }}
-              className="glass-card p-10 border-t-2 border-primary/20 relative group overflow-hidden"
+              className="glass-card p-10 border-2 border-primary/10 dark:border-primary/20 bg-primary/[0.02] dark:bg-primary/[0.03] relative group overflow-hidden shadow-2xl"
             >
               {/* Background Glow */}
               <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 blur-[50px] pointer-events-none group-hover:bg-primary/10 transition-colors duration-700" />
@@ -63,7 +63,7 @@ const SkillsSection = () => {
                     className="group/icon relative"
                   >
                     {/* The Icon Box */}
-                    <div className="w-14 h-14 md:w-20 md:h-20 bg-white/5 border border-white/10 rounded-xl flex items-center justify-center p-3 md:p-5 transition-all duration-500 group-hover/icon:border-primary/50 group-hover/icon:bg-white/10 shadow-lg backdrop-blur-md">
+                    <div className="w-14 h-14 md:w-20 md:h-20 bg-primary/[0.05] border border-primary/10 dark:border-primary/20 rounded-xl flex items-center justify-center p-3 md:p-5 transition-all duration-500 group-hover/icon:border-primary/50 group-hover/icon:bg-primary/10 shadow-lg backdrop-blur-md">
                       <img 
                         src={`https://cdn.simpleicons.org/${skill.slug}`}
                         alt={skill.name}

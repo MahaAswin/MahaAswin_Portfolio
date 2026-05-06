@@ -106,7 +106,8 @@ const AchievementCard = ({ achievement, index }: { achievement: typeof achieveme
         boxShadow: `0 0 30px ${achievement.color}44`,
         borderColor: achievement.color
       }}
-      className="glass-card p-8 flex flex-col items-center text-center gap-4 group transition-all duration-500 border border-white/5 relative"
+      className="glass-card p-8 flex flex-col items-center text-center gap-4 group transition-all duration-500 border-2 relative"
+      style={{ borderColor: `${achievement.color}33`, backgroundColor: `${achievement.color}0D` }}
     >
       <div 
         className="w-16 h-16 rounded-2xl flex items-center justify-center transition-transform duration-500 group-hover:rotate-[360deg]"

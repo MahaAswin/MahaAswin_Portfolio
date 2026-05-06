@@ -15,13 +15,13 @@ export interface Project {
 export const projects: Project[] = [
   {
     id: "jarvis",
-    title: "JARVIS AI Assistant",
-    mission: "MISSION: JARVIS",
-    shortDescription: "Iron Man-inspired voice assistant with NLP and real-time speech processing.",
-    description: "A sophisticated voice assistant capable of controlling home automation, retrieving real-time data, and performing complex tasks using natural language processing. Built with deep integration into the Gemini API for intelligence and custom speech recognition models.",
-    tags: ["Python", "Gemini API", "Speech Recognition", "OpenCV"],
-    image: "/placeholder.svg",
-    videoUrl: "https://www.youtube.com/embed/example", // Use embed link for iframe
+    title: "JARVIS AI Voice Assistant",
+    mission: "MISSION: BUILD AN INTELLIGENT VOICE ASSISTANT",
+    shortDescription: "Full-stack AI voice assistant with real-time speech recognition and conversational AI.",
+    description: "Developed a full-stack AI voice assistant inspired by modern conversational systems, enabling real-time voice interaction through speech-to-text, natural language processing, and voice response generation. Integrated Faster-Whisper for speech recognition, Groq/Gemini LLM APIs for intelligent responses, and gTTS for realistic voice output with a modern React-based interface.",
+    tags: ["React", "FastAPI", "Python", "Groq API", "Faster-Whisper", "gTTS"],
+    image: "/uploads/screenshots/jarvis-main.png",
+    //videoUrl: "https://www.youtube.com/embed/example", // Use embed link for iframe
     demoUrl: "https://jarvis-demo.com",
     githubUrl: "https://github.com/MahaAswin/Jarvis",
     screenshots: [

@@ -106,7 +106,7 @@ const JourneySection = () => {
                 </div>
 
                 <div className={`w-full md:w-1/2 ${i % 2 === 0 ? "md:pr-24" : "md:pl-24"}`}>
-                  <div className="glass-card p-8 group hover:border-primary/30 transition-all duration-500">
+                  <div className={`glass-card p-8 group transition-all duration-500 border-2 ${m.color.replace('text-', 'border-')}/30 ${m.color.replace('text-', 'bg-')}/10 hover:${m.color.replace('text-', 'border-')}/60`}>
                     <div className="flex items-center justify-between mb-4">
                       <span className="font-mono text-xs font-bold text-primary tracking-widest px-3 py-1 bg-primary/10 rounded-full">
                         {m.year}
