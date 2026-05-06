@@ -138,7 +138,7 @@ const HeroSection = () => {
               </div>
               
               {/* Floating "DEVELOPER" Text Watermark */}
-              <div className="absolute bottom-6 right-6 text-foreground/15 dark:text-white/20 font-black text-5xl lg:text-6xl pointer-events-none uppercase tracking-tighter z-10 transition-all duration-500 group-hover:text-primary/40 group-hover:translate-x-[-10px]">
+              <div className="absolute bottom-6 right-6 text-foreground/15 dark:text-white/20 font-black text-5xl lg:text-6xl pointer-events-none uppercase tracking-tighter z-10 transition-all duration-500 group-hover:text-white/90 group-hover:translate-x-[-10px]">
                 DEVELOPER
               </div>
             </div>
@@ -149,17 +149,7 @@ const HeroSection = () => {
         </div>
       </div>
 
-      {/* FOOTER: System Info */}
-      <div className="absolute bottom-10 left-10 flex gap-12 text-[10px] text-foreground/20 dark:text-white/20 font-bold uppercase tracking-[0.3em] hidden lg:flex">
-        <div className="flex flex-col gap-2">
-          <span>Coordinates</span>
-          <span className="text-foreground/40 dark:text-white/40">13.0827° N, 80.2707° E</span>
-        </div>
-        <div className="flex flex-col gap-2">
-          <span>System Status</span>
-          <span className="text-emerald-500/60 font-black">Nominal / Online</span>
-        </div>
-      </div>
+
     </section>
   );
 };

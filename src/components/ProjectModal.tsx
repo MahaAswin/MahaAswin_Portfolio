@@ -119,7 +119,7 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
                     className="flex items-center justify-center gap-3 w-full py-4 bg-primary text-black font-black uppercase tracking-widest text-[10px] rounded-lg hover:bg-primary/90 transition-all hover:translate-y-[-2px] shadow-[0_10px_30px_rgba(255,193,7,0.2)]"
                   >
                     <Globe size={16} />
-                    Launch Live Module
+                    View Demo Video
                   </a>
                 )}
                 <a

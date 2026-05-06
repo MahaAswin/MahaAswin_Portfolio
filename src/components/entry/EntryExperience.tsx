@@ -41,6 +41,15 @@ export const EntryExperience = ({ onComplete }: EntryExperienceProps) => {
     }
   }, [state, stopAll, onComplete]);
 
+  // Auto-entry after 3 seconds
+  useEffect(() => {
+    if (state !== "door") return;
+    const autoEnterTimer = window.setTimeout(() => {
+      handleEnter();
+    }, 3000);
+    return () => window.clearTimeout(autoEnterTimer);
+  }, [state]);
+
   const handleEnter = () => {
     if (state !== "door") return;
     unlockAudio();

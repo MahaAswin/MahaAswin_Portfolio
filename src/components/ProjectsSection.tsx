@@ -30,14 +30,7 @@ const ProjectsSection = () => {
               Project <span className="gradient-text">Matrix</span>
             </h2>
           </motion.div>
-          <motion.p 
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="text-muted-foreground max-w-md md:text-right"
-          >
-            Architecting robust digital ecosystems from voice-controlled AI to large-scale enterprise platforms.
-          </motion.p>
+
         </div>
 
         {/* Uniform Project Grid */}
