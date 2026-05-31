@@ -5,6 +5,7 @@ import JourneySection from "@/components/JourneySection";
 import SkillsSection from "@/components/SkillsSection";
 import ProjectsSection from "@/components/ProjectsSection";
 import AchievementsSection from "@/components/AchievementsSection";
+import CertificatesSection from "@/components/CertificatesSection";
 import ContactSection from "@/components/ContactSection";
 import ThemeToggle from "@/components/ThemeToggle";
 import ParticleBackground from "@/components/ParticleBackground";
@@ -25,7 +26,7 @@ const Index = () => {
   return (
     <>
       {!hasEntered && <EntryExperience onComplete={() => setHasEntered(true)} />}
-      <div className={`min-h-screen bg-background overflow-x-hidden ${!hasEntered ? "hidden h-screen overflow-hidden" : ""}`}>
+      <div className={`min-h-screen bg-background overflow-x-hidden space-y-24 ${!hasEntered ? "hidden h-screen overflow-hidden" : ""}`}>
         <CustomCursor />
         <ParticleBackground />
         <Navbar />
@@ -34,6 +35,7 @@ const Index = () => {
         <SkillsSection />
         <ProjectsSection />
         <AchievementsSection />
+        <CertificatesSection />
         <ContactSection />
         <ThemeToggle />
       </div>

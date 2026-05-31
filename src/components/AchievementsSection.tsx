@@ -1,6 +1,6 @@
-import { motion, useSpring, useTransform, useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
-import { Trophy, Medal, Code, Zap, Award } from "lucide-react";
+import { Trophy, Medal, Zap } from "lucide-react";
 
 const achievements = [
   {
@@ -10,7 +10,7 @@ const achievements = [
     description: "Competed against hundreds of teams and secured a Top 10 finish.",
     value: 10,
     prefix: "Top ",
-    color: "#fbbf24", // Gold
+    color: "#fbbf24",
   },
   {
     id: "codesprint",
@@ -19,7 +19,7 @@ const achievements = [
     description: "Ranked among the top 15 in a national-level coding sprint.",
     value: 15,
     prefix: "Top ",
-    color: "#f59e0b", // Amber
+    color: "#f59e0b",
   },
   {
     id: "leetcode",
@@ -34,7 +34,7 @@ const achievements = [
     description: "Consistent problem solving across arrays, trees, graphs, and DP.",
     value: 250,
     suffix: "+",
-    color: "#FFA116", // LeetCode Orange
+    color: "#FFA116",
   },
   {
     id: "skillrack",
@@ -43,7 +43,7 @@ const achievements = [
     description: "Sharpened fundamentals with intensive daily practice.",
     value: 900,
     suffix: "+",
-    color: "#6366f1", // Indigo
+    color: "#6366f1",
   },
 ];
 
@@ -142,17 +142,20 @@ const AchievementCard = ({ achievement, index }: { achievement: typeof achieveme
 const AchievementsSection = () => {
   return (
     <section id="achievements" className="section-padding relative overflow-hidden">
-      <div className="max-w-6xl mx-auto relative z-10">
+      <div className="max-w-6xl mx-auto relative z-10 space-y-16">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-20"
+          className="text-center"
         >
           <span className="subtitle-glow text-primary mb-4 block">Milestones</span>
           <h2 className="font-sans text-4xl md:text-6xl font-bold">
             Key <span className="gradient-text gradient-underline">Achievements</span>
           </h2>
+          <p className="mx-auto mt-4 max-w-2xl text-muted-foreground text-sm md:text-base leading-relaxed">
+            Recognition from hackathons and consistent coding practice excellence.
+          </p>
         </motion.div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">

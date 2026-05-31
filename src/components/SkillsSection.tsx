@@ -65,7 +65,7 @@ const SkillsSection = () => {
                     {/* The Icon Box */}
                     <div className="w-14 h-14 md:w-20 md:h-20 bg-primary/[0.05] border border-primary/10 dark:border-primary/20 rounded-xl flex items-center justify-center p-3 md:p-5 transition-all duration-500 group-hover/icon:border-primary/50 group-hover/icon:bg-primary/10 shadow-lg backdrop-blur-md">
                       <img 
-                        src={`https://cdn.simpleicons.org/${skill.slug}`}
+                        src={skill.icon ?? `https://cdn.simpleicons.org/${skill.slug}`}
                         alt={skill.name}
                         className="w-full h-full object-contain relative z-10"
                         title={skill.name}

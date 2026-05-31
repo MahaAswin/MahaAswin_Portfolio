@@ -7,6 +7,7 @@ const navItems = [
   { label: "Skills", href: "#skills" },
   { label: "Projects", href: "#projects" },
   { label: "Achievements", href: "#achievements" },
+  { label: "Certifications", href: "#certifications" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -19,6 +20,17 @@ const Navbar = () => {
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (href.startsWith('#')) {
+      e.preventDefault();
+      const target = document.querySelector(href);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        setMobileOpen(false);
+      }
+    }
+  };
 
   return (
     <motion.nav
@@ -45,6 +57,7 @@ const Navbar = () => {
             <a
               key={item.label}
               href={item.href}
+              onClick={(e) => handleSmoothScroll(e, item.href)}
               className="text-sm font-medium text-foreground/70 hover:text-primary transition-all hover:tracking-widest"
             >
               {item.label}
@@ -52,6 +65,7 @@ const Navbar = () => {
           ))}
           <a
             href="#contact"
+            onClick={(e) => handleSmoothScroll(e, '#contact')}
             className="px-5 py-2 glass-card hover:bg-primary hover:text-primary-foreground border-primary/20 text-sm font-bold transition-all hover:scale-105 active:scale-95"
           >
             Hire Me
@@ -81,7 +95,7 @@ const Navbar = () => {
                 <a
                   key={item.label}
                   href={item.href}
-                  onClick={() => setMobileOpen(false)}
+                  onClick={(e) => handleSmoothScroll(e, item.href)}
                   className="text-lg font-medium text-foreground/80 hover:text-primary transition-colors"
                 >
                   {item.label}

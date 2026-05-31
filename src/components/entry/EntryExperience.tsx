@@ -62,13 +62,13 @@ export const EntryExperience = ({ onComplete }: EntryExperienceProps) => {
     }, 900);
 
     window.setTimeout(() => {
-      fadeOutAmbient(1200);
+      fadeOutAmbient(800);
       setState("final");
-    }, 2500);
+    }, 2100);
 
     window.setTimeout(() => {
       setState("entered");
-    }, 3900);
+    }, 2900);
   };
 
   const particles = useMemo(
