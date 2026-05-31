@@ -12,7 +12,7 @@ export const skillCategories: SkillCategory[] = [
   {
     title: "Languages",
     skills: [
-      { name: "Java", slug: "openjdk" },
+      { name: "Java", slug: "java" },
       { name: "C++", slug: "cplusplus" },
       { name: "Python", slug: "python" },
       { name: "JavaScript", slug: "javascript" },

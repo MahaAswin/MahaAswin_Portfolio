@@ -5,23 +5,23 @@ import { Rocket, Satellite, Radio, Sparkles, Award } from "lucide-react";
 const milestones = [
   {
     icon: Rocket,
-    year: "2021",
+    year: "2024",
     title: "Launch Phase",
-    description: "Started the mission with C/C++ and Data Structures. Initialized core systems and logic protocols.",
+    description: "Built foundations in programming, Data Structures, and problem-solving while exploring the world of software development.",
     color: "text-cyan-400",
   },
   {
     icon: Satellite,
-    year: "2022–2023",
+    year: "2024–2025",
     title: "Orbital Mastery",
-    description: "Deployed full-stack satellites using MERN and Spring Boot. Establishing robust communication arrays.",
+    description: "Learned Full Stack Development, MERN Stack, Java, DBMS, and built real-world projects through continuous experimentation.",
     color: "text-purple-400",
   },
   {
     icon: Radio,
-    year: "2024–Present",
+    year: "2025–Present",
     title: "Deep Space Station",
-    description: "Commanding AI-powered research hubs. Integrating Gemini API and voice navigation systems.",
+    description: "Developing scalable applications using MERN and Spring Boot, solving DSA problems, participating in hackathons, and integrating AI-powered features.",
     color: "text-blue-400",
   },
 ];
