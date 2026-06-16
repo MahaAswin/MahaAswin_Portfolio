@@ -58,8 +58,8 @@ export const projects: Project[] = [
     description: "Arivon is a full-stack AI-powered career platform designed to bridge the gap between academic learning and industry requirements. The platform analyzes resumes using ATS-based scoring, identifies missing skills, provides real-time industry news and job opportunities, and enables recruiters to efficiently discover and filter candidates based on skills and readiness. Built using the MERN stack with API integrations, Arivon focuses on improving employability and creating a smarter hiring ecosystem.",
     tags: ["MongoDB", "Express", "React", "Node.js", "Tailwind CSS"],
     image: "/uploads/screenshots/arivon/arivon-1.jpeg",
-    videoUrl: "https://www.youtube.com/embed/example2",
-    demoUrl: "https://arivon.com",
+    videoUrl: "https://drive.google.com/file/d/1RgVhPPzWpeE4SYsfX7oV9t2rMttPTvIr/view?usp=sharing",
+    demoUrl: "https://drive.google.com/file/d/1RgVhPPzWpeE4SYsfX7oV9t2rMttPTvIr/view?usp=sharing",
     githubUrl: "https://github.com/MahaAswin/Arivon",
     screenshots: [
       "/uploads/screenshots/arivon/arivon-1.jpeg",
