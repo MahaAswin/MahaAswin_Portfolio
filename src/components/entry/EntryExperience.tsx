@@ -1,7 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import { motion, AnimatePresence } from "framer-motion";
-import { useSoundManager } from "./useSoundManager";
 import { TunnelScene } from "./TunnelScene";
 
 export type EntryState = "door" | "opening" | "teleport" | "final" | "entered";
@@ -12,34 +11,12 @@ interface EntryExperienceProps {
 
 export const EntryExperience = ({ onComplete }: EntryExperienceProps) => {
   const [state, setState] = useState<EntryState>("door");
-  const {
-    playAmbient,
-    playVoice,
-    playDoor,
-    playTeleport,
-    unlockAudio,
-    fadeOutAmbient,
-    stopAll,
-  } = useSoundManager();
-
-  useEffect(() => {
-    playAmbient();
-  }, [playAmbient]);
-
-  useEffect(() => {
-    if (state !== "door") return;
-    const voiceTimer = window.setTimeout(() => playVoice(), 1000);
-    return () => {
-      window.clearTimeout(voiceTimer);
-    };
-  }, [state, playVoice]);
 
   useEffect(() => {
     if (state === "entered") {
-      stopAll();
       onComplete();
     }
-  }, [state, stopAll, onComplete]);
+  }, [state, onComplete]);
 
   // Auto-entry after 3 seconds
   useEffect(() => {
@@ -52,17 +29,13 @@ export const EntryExperience = ({ onComplete }: EntryExperienceProps) => {
 
   const handleEnter = () => {
     if (state !== "door") return;
-    unlockAudio();
-    playDoor();
     setState("opening");
 
     window.setTimeout(() => {
-      playTeleport();
       setState("teleport");
     }, 900);
 
     window.setTimeout(() => {
-      fadeOutAmbient(800);
       setState("final");
     }, 2100);
 

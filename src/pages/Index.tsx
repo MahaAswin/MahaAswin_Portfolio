@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
+import { DevTerminal } from "@/components/DevTerminal";
 import JourneySection from "@/components/JourneySection";
 import SkillsSection from "@/components/SkillsSection";
 import ProjectsSection from "@/components/ProjectsSection";
@@ -11,6 +12,7 @@ import ThemeToggle from "@/components/ThemeToggle";
 import ParticleBackground from "@/components/ParticleBackground";
 import CustomCursor from "@/components/CustomCursor";
 import { EntryExperience } from "@/components/entry/EntryExperience";
+import { HUDControl } from "@/components/HUDControl";
 
 const Index = () => {
   const [hasEntered, setHasEntered] = useState(false);
@@ -36,8 +38,10 @@ const Index = () => {
         <ProjectsSection />
         <AchievementsSection />
         <CertificatesSection />
+        <DevTerminal />
         <ContactSection />
         <ThemeToggle />
+        <HUDControl />
       </div>
     </>
   );

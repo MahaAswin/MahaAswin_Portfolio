@@ -39,12 +39,21 @@ const Navbar = () => {
       transition={{ duration: 0.8, type: "spring", bounce: 0.2 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled 
-          ? "py-3 bg-background/40 backdrop-blur-xl border-b border-white/5" 
-          : "py-6 bg-transparent"
+          ? "py-2 bg-background/40 backdrop-blur-xl border-b border-white/5" 
+          : "py-3 bg-transparent"
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
-        <a href="#" className="font-sans font-bold text-2xl flex items-center gap-2 group">
+        <a 
+          href="#" 
+          onClick={(e) => {
+            if (window.scrollY > 0) {
+              e.preventDefault();
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }
+          }}
+          className="font-sans font-bold text-2xl flex items-center gap-2 group"
+        >
           <div className="w-8 h-8 rounded-lg bg-primary/20 flex items-center justify-center transition-transform group-hover:rotate-12">
             <Rocket size={18} className="text-primary" />
           </div>

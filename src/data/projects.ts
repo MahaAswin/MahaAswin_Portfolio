@@ -57,13 +57,24 @@ export const projects: Project[] = [
     shortDescription: "AI-powered career intelligence platform that helps students improve job readiness through ATS-based resume analysis, skill gap identification, real-time industry insights, and recruiter-driven candidate filtering.",
     description: "Arivon is a full-stack AI-powered career platform designed to bridge the gap between academic learning and industry requirements. The platform analyzes resumes using ATS-based scoring, identifies missing skills, provides real-time industry news and job opportunities, and enables recruiters to efficiently discover and filter candidates based on skills and readiness. Built using the MERN stack with API integrations, Arivon focuses on improving employability and creating a smarter hiring ecosystem.",
     tags: ["MongoDB", "Express", "React", "Node.js", "Tailwind CSS"],
-    image: "/placeholder.svg",
+    image: "/uploads/screenshots/arivon/arivon-1.jpeg",
     videoUrl: "https://www.youtube.com/embed/example2",
     demoUrl: "https://arivon.com",
     githubUrl: "https://github.com/MahaAswin/Arivon",
     screenshots: [
-      "/uploads/screenshots/arivon-1.png",
-      "/uploads/screenshots/arivon-2.png"
+      "/uploads/screenshots/arivon/arivon-1.jpeg",
+      "/uploads/screenshots/arivon/arivon-2.jpeg",
+      "/uploads/screenshots/arivon/arivon-3.jpeg",
+      "/uploads/screenshots/arivon/arivon-4.jpeg",
+      "/uploads/screenshots/arivon/arivon-5.jpeg",
+      "/uploads/screenshots/arivon/arivon-6.jpeg",
+      "/uploads/screenshots/arivon/arivon-7.jpeg",
+      "/uploads/screenshots/arivon/arivon-8.jpeg",
+      "/uploads/screenshots/arivon/arivon-9.jpeg",
+      "/uploads/screenshots/arivon/arivon-10.jpeg",
+      "/uploads/screenshots/arivon/arivon-11.jpeg",
+      "/uploads/screenshots/arivon/arivon-12.jpeg",
+      "/uploads/screenshots/arivon/arivon-13.jpeg"
     ],
   },
 ];
