@@ -13,7 +13,7 @@ export const skillCategories: SkillCategory[] = [
   {
     title: "Languages",
     skills: [
-      { name: "Java", slug: "java", icon: "https://cdn.simpleicons.org/java/E76F00" },
+      { name: "Java", slug: "java" },
       { name: "C++", slug: "cplusplus" },
       { name: "Python", slug: "python" },
       { name: "JavaScript", slug: "javascript" },
@@ -24,7 +24,7 @@ export const skillCategories: SkillCategory[] = [
     skills: [
       { name: "React", slug: "react" },
       { name: "HTML5", slug: "html5" },
-      { name: "CSS3", slug: "css3", icon: "https://cdn.simpleicons.org/css3/1572B6" },
+      { name: "CSS3", slug: "css3" },
       { name: "Tailwind CSS", slug: "tailwindcss" },
     ],
   },
@@ -51,7 +51,7 @@ export const skillCategories: SkillCategory[] = [
       { name: "Git", slug: "git" },
       { name: "Docker", slug: "docker" },
       { name: "Postman", slug: "postman" },
-      { name: "VS Code", slug: "visualstudiocode", icon: "https://cdn.simpleicons.org/visualstudiocode/007ACC" },
+      { name: "VS Code", slug: "visualstudiocode" },
     ],
   },
 ];
