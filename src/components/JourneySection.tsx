@@ -68,7 +68,7 @@ const JourneySection = () => {
             <div className="relative group">
               <div className="absolute inset-0 bg-primary/20 blur-3xl rounded-full scale-75 group-hover:scale-90 transition-transform duration-700" />
               <img 
-                src="/uploads/profile-white-shirt.png" 
+                src="./uploads/profile-white-shirt.png" 
                 alt="Professional focus" 
                 className="relative z-10 w-full h-auto object-contain drop-shadow-2xl grayscale hover:grayscale-0 transition-all duration-700"
               />

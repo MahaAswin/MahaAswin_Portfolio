@@ -34,7 +34,7 @@ const HeroSection = () => {
     y.set(0);
   };
 
-  const resumePath = "/resume/Maha_Aswin_Resume.pdf";
+  const resumePath = "./resume/Maha_Aswin_Resume.pdf";
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background">
@@ -121,7 +121,7 @@ const HeroSection = () => {
                 <div className="absolute bottom-0 w-[120%] h-[120%] bg-primary/5 blur-[100px] rounded-full pointer-events-none group-hover:bg-primary/20 transition-all duration-700" />
                 
                 <motion.img 
-                  src="/uploads/profile-red-tie.png" 
+                  src="./uploads/profile-red-tie.png" 
                   alt="Maha Aswin" 
                   className="w-auto h-[105%] max-w-none object-contain object-bottom transition-transform duration-700 group-hover:scale-105 drop-shadow-[0_20px_50px_rgba(0,0,0,0.4)]"
                   style={{ 
