@@ -2,7 +2,6 @@ import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { Download, FileText } from "lucide-react";
 import HeroScene3D from "./HeroScene3D";
-import resumePath from "@/assets/resume/Maha_Aswin_Resume.pdf";
 
 const HeroSection = () => {
   const cardRef = useRef<HTMLDivElement>(null);
@@ -34,6 +33,10 @@ const HeroSection = () => {
     x.set(0);
     y.set(0);
   };
+
+  // Dynamically calculate the base path (handles subdirectories like GitHub Pages automatically)
+  const basePath = window.location.pathname.endsWith('/') ? window.location.pathname : window.location.pathname + '/';
+  const resumePath = `${basePath}resume/Maha_Aswin_Resume.pdf`;
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background">
