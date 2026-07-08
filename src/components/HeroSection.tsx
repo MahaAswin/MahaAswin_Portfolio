@@ -34,7 +34,7 @@ const HeroSection = () => {
     y.set(0);
   };
 
-  const resumePath = "/resume/Maha Aswin S B - resume-Unofficial.pdf";
+  const resumePath = "/resume/Maha_Aswin_Resume.pdf";
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background">
