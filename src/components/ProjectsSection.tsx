@@ -38,9 +38,9 @@ const ProjectsSection = () => {
           {projects.map((project, index) => (
             <motion.div
               key={project.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              initial={{ opacity: 0, scale: 0.95, y: 30 }}
+              whileInView={{ opacity: 1, scale: 1, y: 0 }}
+              viewport={{ once: false, amount: 0.15 }}
               transition={{ delay: index * 0.1 }}
               onClick={() => handleProjectClick(project)}
               className="group relative bg-primary/[0.04] dark:bg-primary/[0.06] border-2 border-primary/10 dark:border-primary/20 rounded-2xl overflow-hidden hover:border-primary/60 transition-all duration-500 cursor-pointer flex flex-col h-full shadow-[0_20px_50px_rgba(0,0,0,0.08)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.25)]"

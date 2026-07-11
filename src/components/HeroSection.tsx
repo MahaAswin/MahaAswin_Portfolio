@@ -1,11 +1,23 @@
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { motion, useMotionValue, useSpring, useTransform, useScroll } from "framer-motion";
 import { useRef } from "react";
 import { Download, FileText } from "lucide-react";
 import HeroScene3D from "./HeroScene3D";
 
 const HeroSection = () => {
   const cardRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLDivElement>(null);
   
+  // Track scroll progress of the hero section relative to viewport
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"],
+  });
+
+  // Calculate scale and position offsets linked to scroll progress
+  const scrollScale = useTransform(scrollYProgress, [0, 1], [1, 0.75]);
+  const scrollYVal = useTransform(scrollYProgress, [0, 1], [0, 120]);
+  const scrollXVal = useTransform(scrollYProgress, [0, 1], [0, -40]);
+
   // 3D Tilt Values for Parallax
   const x = useMotionValue(0);
   const y = useMotionValue(0);
@@ -39,7 +51,7 @@ const HeroSection = () => {
   const resumePath = `${basePath}resume/Maha_Aswin_Resume.pdf`;
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background">
+    <section ref={sectionRef} className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background">
       {/* Background Effects: Particle Background + Theme Glows */}
       <HeroScene3D />
       
@@ -103,17 +115,21 @@ const HeroSection = () => {
         </div>
 
         {/* RIGHT SECTION: Glassmorphism Card */}
-        <div className="relative flex justify-center lg:justify-end perspective-1000">
+        <div className="relative flex justify-center lg:justify-end perspective-1000 lg:-mt-8">
           <motion.div
-            ref={cardRef}
-            onMouseMove={handleMouseMove}
-            onMouseLeave={handleMouseLeave}
-            initial={{ opacity: 0, scale: 0.9, y: 40 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
-            transition={{ duration: 1.2, ease: [0.34, 1.56, 0.64, 1] }}
-            className="relative w-[340px] md:w-[380px] h-[450px] md:h-[500px] group cursor-pointer"
+            style={{ y: scrollYVal, x: scrollXVal }}
+            className="relative"
           >
+            <motion.div
+              ref={cardRef}
+              onMouseMove={handleMouseMove}
+              onMouseLeave={handleMouseLeave}
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
+              transition={{ duration: 1.2, ease: [0.34, 1.56, 0.64, 1] }}
+              className="relative w-[340px] md:w-[380px] h-[450px] md:h-[500px] group cursor-pointer"
+            >
             {/* The Glass Card Container */}
             <div className="absolute inset-0 rounded-[20px] bg-white/[0.05] dark:bg-black/[0.1] backdrop-blur-[25px] border border-white/[0.08] dark:border-white/[0.05] shadow-[0_40px_100px_rgba(0,0,0,0.5)] overflow-hidden transition-all duration-500 group-hover:bg-white/[0.08] dark:group-hover:bg-black/[0.2] group-hover:border-primary/30 group-hover:shadow-[0_0_60px_rgba(255,193,7,0.15)]">
               
@@ -147,6 +163,7 @@ const HeroSection = () => {
 
             {/* Ambient Background Glow */}
             <div className="absolute -inset-8 bg-primary/10 blur-[100px] opacity-0 group-hover:opacity-100 transition-opacity duration-700 -z-10" />
+          </motion.div>
           </motion.div>
         </div>
       </div>

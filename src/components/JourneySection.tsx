@@ -90,9 +90,9 @@ const JourneySection = () => {
             {milestones.map((m, i) => (
               <motion.div
                 key={m.year}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
+                initial={{ opacity: 0, scale: 0.95, y: 50 }}
+                whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                viewport={{ once: false, amount: 0.15 }}
                 transition={{ duration: 0.8, delay: i * 0.1 }}
                 className={`relative flex items-center ${
                   i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"

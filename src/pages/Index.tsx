@@ -28,7 +28,7 @@ const Index = () => {
   return (
     <>
       {!hasEntered && <EntryExperience onComplete={() => setHasEntered(true)} />}
-      <div className={`min-h-screen bg-background overflow-x-hidden space-y-24 ${!hasEntered ? "hidden h-screen overflow-hidden" : ""}`}>
+      <div className={`min-h-screen bg-background overflow-x-hidden ${!hasEntered ? "hidden h-screen overflow-hidden" : ""}`}>
         <CustomCursor />
         <ParticleBackground />
         <Navbar />

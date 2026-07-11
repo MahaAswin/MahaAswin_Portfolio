@@ -25,9 +25,9 @@ const SkillsSection = () => {
           {skillCategories.map((group, groupIdx) => (
             <motion.div
               key={group.title}
-              initial={{ opacity: 0, scale: 0.95 }}
+              initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
+              viewport={{ once: false, amount: 0.15 }}
               transition={{ delay: groupIdx * 0.1, duration: 0.8 }}
               className="glass-card p-10 border-2 border-primary/10 dark:border-primary/20 bg-primary/[0.02] dark:bg-primary/[0.03] relative group overflow-hidden shadow-2xl"
             >

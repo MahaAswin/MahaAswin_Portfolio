@@ -9,9 +9,9 @@ const ContactSection = () => {
 
       <div className="max-w-4xl mx-auto text-center relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          initial={{ opacity: 0, scale: 0.95, y: 30 }}
+          whileInView={{ opacity: 1, scale: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.15 }}
         >
           <span className="subtitle-glow text-primary mb-4 block">Connection</span>
           <h2 className="font-sans text-4xl md:text-6xl font-bold mb-8">

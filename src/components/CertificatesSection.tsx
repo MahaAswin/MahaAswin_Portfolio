@@ -54,9 +54,9 @@ const CertificateCard = ({
 }) => {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
+      initial={{ opacity: 0, scale: 0.95, y: 20 }}
+      whileInView={{ opacity: 1, scale: 1, y: 0 }}
+      viewport={{ once: false, amount: 0.15 }}
       transition={{ delay: index * 0.1, duration: 0.5 }}
       whileHover={{ y: -4 }}
       className="group rounded-2xl border border-primary/10 bg-surface/80 p-6 transition-all duration-300 hover:border-primary/20 hover:shadow-xl backdrop-blur-sm"
