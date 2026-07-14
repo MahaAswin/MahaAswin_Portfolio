@@ -102,9 +102,16 @@ export const DevTerminal = () => {
 
   const currentStyle = themeStyles[theme];
 
-  // Auto scroll to bottom
+  // Auto scroll to bottom of the terminal output
   useEffect(() => {
-    terminalEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    if (logs.length > 0 && logs[logs.length - 1].command !== "system_init") {
+      if (containerRef.current) {
+        containerRef.current.scrollTo({
+          top: containerRef.current.scrollHeight,
+          behavior: "smooth"
+        });
+      }
+    }
   }, [logs]);
 
   // Initial greeting
@@ -257,9 +264,14 @@ export const DevTerminal = () => {
                   <a href={proj.githubUrl} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline flex items-center gap-1 font-bold">
                     🔗 GitHub Repository
                   </a>
+                  {proj.liveUrl && (
+                    <a href={proj.liveUrl} target="_blank" rel="noopener noreferrer" className="text-emerald-500 hover:underline flex items-center gap-1 font-bold">
+                      🔗 Live Site
+                    </a>
+                  )}
                   {proj.demoUrl && (
-                    <a href={proj.demoUrl} target="_blank" rel="noopener noreferrer" className="text-emerald-500 hover:underline flex items-center gap-1 font-bold">
-                      🔗 Live Demo
+                    <a href={proj.demoUrl} target="_blank" rel="noopener noreferrer" className="text-amber-500 hover:underline flex items-center gap-1 font-bold">
+                      🔗 Demo Video
                     </a>
                   )}
                 </div>
@@ -453,7 +465,7 @@ export const DevTerminal = () => {
           </div>
 
           {/* Console Log Output */}
-          <div className={`flex-1 p-6 overflow-y-auto font-mono ${currentStyle.scrollbar} relative`}>
+          <div ref={containerRef} className={`flex-1 p-6 overflow-y-auto font-mono ${currentStyle.scrollbar} relative`}>
             {/* Falling Matrix Rain Screen Overlay */}
             {showMatrix && (
               <MatrixRain

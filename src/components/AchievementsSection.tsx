@@ -30,9 +30,9 @@ const achievements = [
         className="w-5 h-5"
       />
     ),
-    title: "250+ LeetCode Problems",
+    title: "350+ LeetCode Problems",
     description: "Consistent problem solving across arrays, trees, graphs, and DP.",
-    value: 250,
+    value: 350,
     suffix: "+",
     color: "#FFA116",
   },

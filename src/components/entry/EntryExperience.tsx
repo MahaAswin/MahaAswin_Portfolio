@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import { motion, AnimatePresence } from "framer-motion";
+import { useTheme } from "next-themes";
 import { TunnelScene } from "./TunnelScene";
 
 export type EntryState = "door" | "opening" | "teleport" | "final" | "entered";
@@ -10,6 +11,8 @@ interface EntryExperienceProps {
 }
 
 export const EntryExperience = ({ onComplete }: EntryExperienceProps) => {
+  const { resolvedTheme } = useTheme();
+  const isDark = resolvedTheme === "dark";
   const [state, setState] = useState<EntryState>("door");
 
   useEffect(() => {
@@ -41,7 +44,7 @@ export const EntryExperience = ({ onComplete }: EntryExperienceProps) => {
 
     window.setTimeout(() => {
       setState("entered");
-    }, 2900);
+    }, 4100);
   };
 
   const particles = useMemo(
@@ -116,13 +119,13 @@ export const EntryExperience = ({ onComplete }: EntryExperienceProps) => {
             <motion.div
               animate={{ opacity: [0.12, 0.26, 0.12] }}
               transition={{ duration: 2.8, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(14,116,144,0.35)_0%,rgba(2,6,23,0.96)_62%)]"
+              className="absolute inset-0 bg-[radial-gradient(circle_at_center,hsla(var(--primary)/0.35)_0%,rgba(2,6,23,0.96)_62%)]"
             />
             <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(2,6,23,0.95)_15%,rgba(2,6,23,0.5)_50%,rgba(2,6,23,0.95)_100%)]" />
             <motion.div
               animate={{ opacity: [0.45, 0.7, 0.45] }}
               transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute left-1/2 top-1/2 h-[19rem] w-[19rem] -translate-x-1/2 -translate-y-1/2 rounded-full border-4 border-cyan-300/85 bg-cyan-100/20 shadow-[0_0_60px_rgba(34,211,238,0.6)]"
+              className="absolute left-1/2 top-1/2 h-[19rem] w-[19rem] -translate-x-1/2 -translate-y-1/2 rounded-full border-4 border-primary/85 bg-primary/10 shadow-[0_0_60px_hsla(var(--primary)/0.6)]"
             />
             {starField.map((star) => (
               <motion.span
@@ -163,7 +166,7 @@ export const EntryExperience = ({ onComplete }: EntryExperienceProps) => {
                   width: `${obj.size}px`,
                   height: `${obj.size}px`,
                 }}
-                className="absolute rounded-full border border-cyan-200/10 bg-[radial-gradient(circle_at_30%_30%,rgba(34,211,238,0.35),rgba(30,58,138,0.18)_45%,rgba(2,6,23,0.05)_100%)] blur-[0.5px]"
+                className="absolute rounded-full border border-primary/10 bg-[radial-gradient(circle_at_30%_30%,hsla(var(--primary)/0.35),hsla(var(--secondary)/0.18)_45%,rgba(2,6,23,0.05)_100%)] blur-[0.5px]"
               />
             ))}
             {movingTrails.map((trail) => (
@@ -182,7 +185,7 @@ export const EntryExperience = ({ onComplete }: EntryExperienceProps) => {
                   left: `${trail.left}%`,
                   width: `${trail.size}px`,
                 }}
-                className="absolute h-[2px] rotate-[12deg] bg-gradient-to-r from-cyan-200/0 via-cyan-200/95 to-cyan-200/0 blur-[1px]"
+                className="absolute h-[2px] rotate-[12deg] bg-gradient-to-r from-primary/0 via-primary/95 to-primary/0 blur-[1px]"
               />
             ))}
 
@@ -203,7 +206,7 @@ export const EntryExperience = ({ onComplete }: EntryExperienceProps) => {
                   width: `${particle.size}px`,
                   height: `${particle.size}px`,
                 }}
-                className="absolute rounded-full bg-cyan-100/80 blur-[1px]"
+                className="absolute rounded-full bg-primary/80 blur-[1px]"
               />
             ))}
 
@@ -225,7 +228,7 @@ export const EntryExperience = ({ onComplete }: EntryExperienceProps) => {
                   <motion.div
                     animate={{ rotate: 360 }}
                     transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
-                    className="absolute inset-0 rounded-full border border-cyan-300/30"
+                    className="absolute inset-0 rounded-full border border-primary/30"
                   />
                   {flameArcs.map((arc) => (
                     <motion.span
@@ -235,24 +238,24 @@ export const EntryExperience = ({ onComplete }: EntryExperienceProps) => {
                       style={{
                         transform: `translate(-50%, -50%) rotate(${arc.angle}deg) translateY(-10.7rem)`,
                       }}
-                      className="absolute left-1/2 top-1/2 h-6 w-1 rounded-full bg-gradient-to-t from-cyan-400/10 via-cyan-300/90 to-blue-100 shadow-[0_0_12px_rgba(56,189,248,0.95)]"
+                      className="absolute left-1/2 top-1/2 h-6 w-1 rounded-full bg-gradient-to-t from-primary/10 via-primary/90 to-white/80 shadow-[0_0_12px_hsla(var(--primary)/0.95)]"
                     />
                   ))}
                   <motion.div
-                    animate={{ boxShadow: ["0 0 35px rgba(56,189,248,0.45)", "0 0 85px rgba(56,189,248,0.9)", "0 0 35px rgba(56,189,248,0.45)"] }}
+                    animate={{ boxShadow: ["0 0 35px hsla(var(--primary)/0.45)", "0 0 85px hsla(var(--primary)/0.9)", "0 0 35px hsla(var(--primary)/0.45)"] }}
                     transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                    className="absolute inset-[14%] rounded-full border-[10px] border-cyan-300/90 bg-black/45"
+                    className="absolute inset-[14%] rounded-full border-[10px] border-primary/90 bg-black/45"
                   />
                   <div className="absolute inset-[28%] rounded-full bg-black" />
                   <motion.div
                     animate={{ opacity: [0.25, 0.8, 0.25], scale: [0.92, 1.06, 0.92] }}
                     transition={{ duration: 2.1, repeat: Infinity, ease: "easeInOut" }}
-                    className="pointer-events-none absolute inset-[8%] rounded-full bg-cyan-300/15 blur-xl"
+                    className="pointer-events-none absolute inset-[8%] rounded-full bg-primary/15 blur-xl"
                   />
                   <motion.div
                     animate={{ opacity: [0.25, 0.7, 0.25], scaleX: [0.8, 1.15, 0.8] }}
                     transition={{ duration: 1.7, repeat: Infinity, ease: "easeInOut" }}
-                    className="absolute bottom-2 left-1/2 h-8 w-44 -translate-x-1/2 rounded-full bg-cyan-300/40 blur-md"
+                    className="absolute bottom-2 left-1/2 h-8 w-44 -translate-x-1/2 rounded-full bg-primary/40 blur-md"
                   />
                 </motion.div>
               )}
@@ -264,7 +267,7 @@ export const EntryExperience = ({ onComplete }: EntryExperienceProps) => {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: [0, 1, 0.82, 0.28] }}
                   transition={{ duration: 0.95, ease: "easeInOut" }}
-                  className="absolute inset-0 z-40 bg-gradient-to-br from-white via-cyan-100 to-blue-200/75"
+                  className="absolute inset-0 z-40 bg-gradient-to-br from-white via-primary/30 to-background/75"
                 />
               )}
             </AnimatePresence>
@@ -283,11 +286,11 @@ export const EntryExperience = ({ onComplete }: EntryExperienceProps) => {
                       <TunnelScene />
                     </Canvas>
                   </div>
-                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(168,85,247,0.16)_0%,rgba(30,58,138,0.3)_35%,rgba(2,6,23,0.8)_74%)]" />
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,hsla(var(--secondary)/0.16)_0%,hsla(var(--primary)/0.2)_35%,rgba(2,6,23,0.8)_74%)]" />
                   <motion.div
                     animate={{ rotate: [0, 7, 0], scale: [0.95, 1.38] }}
                     transition={{ duration: 1, ease: "easeInOut" }}
-                    className="absolute inset-0 bg-[conic-gradient(from_180deg_at_50%_50%,rgba(34,211,238,0),rgba(34,211,238,0.5),rgba(168,85,247,0.55),rgba(34,211,238,0))] blur-md"
+                    className="absolute inset-0 bg-[conic-gradient(from_180deg_at_50%_50%,rgba(255,255,255,0),hsla(var(--primary)/0.5),hsla(var(--secondary)/0.55),rgba(255,255,255,0))] blur-md"
                   />
                 </motion.div>
               )}
@@ -302,10 +305,10 @@ export const EntryExperience = ({ onComplete }: EntryExperienceProps) => {
                   className="absolute inset-0 z-40 flex items-center justify-center bg-black/70 text-center"
                 >
                   <div>
-                    <h1 className="bg-gradient-to-r from-cyan-100 via-blue-300 to-purple-300 bg-clip-text text-4xl font-bold text-transparent md:text-6xl">
+                    <h1 className="text-white text-4xl font-bold md:text-6xl tracking-tight">
                       Maha Aswin S B
                     </h1>
-                    <p className="mt-4 text-lg text-cyan-100/90 md:text-2xl">The Developer</p>
+                    <p className="mt-4 text-lg text-white/90 md:text-2xl">The Developer</p>
                   </div>
                 </motion.div>
               )}

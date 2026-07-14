@@ -8,6 +8,7 @@ const navItems = [
   { label: "Projects", href: "#projects" },
   { label: "Achievements", href: "#achievements" },
   { label: "Certifications", href: "#certifications" },
+  { label: "Console", href: "#dev-console" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -72,13 +73,6 @@ const Navbar = () => {
               {item.label}
             </a>
           ))}
-          <a
-            href="#contact"
-            onClick={(e) => handleSmoothScroll(e, '#contact')}
-            className="px-5 py-2 glass-card hover:bg-primary hover:text-primary-foreground border-primary/20 text-sm font-bold transition-all hover:scale-105 active:scale-95"
-          >
-            Hire Me
-          </a>
         </div>
 
         {/* Mobile Toggle */}

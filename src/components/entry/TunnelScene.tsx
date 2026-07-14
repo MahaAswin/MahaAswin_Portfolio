@@ -1,20 +1,27 @@
 import { useRef, useMemo } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
+import { useTheme } from "next-themes";
 
 const RING_COUNT = 25;
 const TUNNEL_LENGTH = 50;
 
 export const TunnelScene = () => {
+  const { resolvedTheme } = useTheme();
+  const isDark = resolvedTheme === "dark";
   const groupRef = useRef<THREE.Group>(null);
+
+  // Set colors according to the current UI theme color
+  const colorPrimary = isDark ? "#d4ff00" : "#ffc107"; // Lime yellow (dark) or Golden yellow (light)
+  const colorSecondary = "#8b5cf6"; // Contrast Purple
 
   const rings = useMemo(() => {
     return Array.from({ length: RING_COUNT }).map((_, i) => ({
       z: -(i * (TUNNEL_LENGTH / RING_COUNT)),
       rotation: (Math.PI / 3) * i,
-      color: i % 2 === 0 ? "#8b5cf6" : "#3b82f6", // Purple/Blue mix
+      color: i % 2 === 0 ? colorPrimary : colorSecondary,
     }));
-  }, []);
+  }, [colorPrimary, colorSecondary]);
 
   useFrame((state) => {
     const t = state.clock.getElapsedTime();
@@ -68,7 +75,7 @@ export const TunnelScene = () => {
       <SpeedLines />
 
       {/* Tunnel Lighting */}
-      <pointLight position={[0, 0, -10]} intensity={5} color="#3b82f6" />
+      <pointLight position={[0, 0, -10]} intensity={5} color={colorPrimary} />
       <ambientLight intensity={0.2} />
     </group>
   );

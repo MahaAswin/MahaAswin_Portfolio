@@ -8,6 +8,14 @@ interface ProjectModalProps {
   onClose: () => void;
 }
 
+const getEmbedUrl = (url: string) => {
+  if (!url) return "";
+  if (url.includes("drive.google.com")) {
+    return url.replace(/\/view\b.*/, "/preview");
+  }
+  return url;
+};
+
 const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
   if (!project) return null;
 
@@ -46,7 +54,7 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
                 <div className="aspect-video w-full rounded-xl bg-white/5 overflow-hidden relative border border-white/10 shadow-2xl">
                   {project.videoUrl ? (
                     <iframe
-                      src={project.videoUrl}
+                      src={getEmbedUrl(project.videoUrl)}
                       className="w-full h-full"
                       title={project.title}
                       frameBorder="0"
@@ -111,7 +119,29 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
 
               {/* Deployment & Source Controls */}
               <div className="mt-auto pt-12 flex flex-col gap-4">
-                {project.demoUrl && (
+                {project.liveUrl && (
+                  <a
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-3 w-full py-4 bg-primary text-black font-black uppercase tracking-widest text-[10px] rounded-lg hover:bg-primary/90 transition-all hover:translate-y-[-2px] shadow-[0_10px_30px_rgba(255,193,7,0.2)]"
+                  >
+                    <Globe size={16} />
+                    Visit Live Site
+                  </a>
+                )}
+                {project.liveUrl && project.demoUrl && (
+                  <a
+                    href={project.demoUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-3 w-full py-4 bg-white/5 border border-white/10 text-white font-black uppercase tracking-widest text-[10px] rounded-lg hover:bg-white/10 transition-all hover:translate-y-[-2px]"
+                  >
+                    <Play size={16} />
+                    View Demo Video
+                  </a>
+                )}
+                {!project.liveUrl && project.demoUrl && (
                   <a
                     href={project.demoUrl}
                     target="_blank"
